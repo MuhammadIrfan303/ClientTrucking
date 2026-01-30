@@ -12,10 +12,10 @@ function About() {
                 <div className="relative z-10 max-w-3xl text-left text-white px-6 py-16">
                     <h1 className="text-3xl md:text-4xl font-bold tracking-wide">ABOUT US</h1>
                     <p className="mt-4 text-base md:text-lg text-gray-100">
-                        Learn more about CLE FREIGHT LLC, a trusted trucking and freight brokerage company
-                        committed to delivering reliable and efficient transportation solutions across the
-                        United States. We focus on building strong relationships with shippers and carriers
-                        through professionalism, transparency, and on-time service
+                        CLE FREIGHT LLC is a freight brokerage headquartered in Louisville, Kentucky.
+                        We focus on building long-term relationships with shippers and carriers by offering transparent service, competitive pricing, and consistent performance.
+
+                        We operate with integrity, responsiveness, and a commitment to making freight transportation simple and stress-free for our customers
                     </p>
                 </div>
             </section>

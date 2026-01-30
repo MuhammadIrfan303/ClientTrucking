@@ -1,20 +1,22 @@
 @import "tailwindcss";
 
-body {
+* {
     @apply font-sans;
+
 }
 
 @layer components {
 
     /* Base button styles used everywhere */
     .color {
-        @apply text-[#133866]
+        @apply text-[#4372ac]
     }
 
     .bordercolor {
         @apply border-[#133866]
     }
-    .bgcolor{
+
+    .bgcolor {
         @apply bg-[#133866]
     }
 }
