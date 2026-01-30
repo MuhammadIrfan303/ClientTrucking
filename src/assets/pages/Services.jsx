@@ -63,7 +63,7 @@ const Services = () => {
 
     return (
         <div className="min-h-screen bg-white">
-            {/* Hero Section */}
+            {/* Hero Section freer */}
             <section
                 className="relative w-full min-h-[400px] md:min-h-[500px] rounded-sm overflow-hidden bg-cover bg-center"
                 style={{ backgroundImage: "url('/images/truckservices.jpg')" }}
