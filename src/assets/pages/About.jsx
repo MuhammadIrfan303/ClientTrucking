@@ -2,7 +2,7 @@ function About() {
     return (
         <div className="min-h-screen bg-white">
 
-            {/* Hero with background image */}
+            {/* Hero  jhbjkhk with background image */}
             <section
                 className="relative w-full min-h-[380px] rounded-sm overflow-hidden bg-cover bg-center mt-6"
                 style={{ backgroundImage: "url('/images/truck1.jpg')" }}
