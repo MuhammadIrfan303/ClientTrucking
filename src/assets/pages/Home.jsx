@@ -28,102 +28,102 @@ const Home = () => {
         }
     ];
     return (
-        <div className="px-4 space-y-20 md:px-1">
+        <div className=" min-h-screen space-y-15 md:px-1 mb-11" >
 
             {/* Hero with background image */}
             <section
-    className="relative w-full min-h-[400px] md:min-h-[500px] rounded-sm overflow-hidden bg-cover bg-center shadow-2xl"
-    style={{ backgroundImage: "url('/images/truckhome.jpg')" }}
->
-    {/* Enhanced gradient overlay */}
-    <div className="absolute inset-0 bg-gradient-to-r from-[#133866]/90 via-[#133866]/70 to-transparent" />
-    
-    {/* Subtle pattern overlay */}
-    <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-10" />
-    
-    {/* Content container */}
-    <div className="relative z-10 h-full flex items-center">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 w-full">
-            <div className="max-w-2xl">
-                {/* Decorative element */}
-                <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-1 bg-[#4372ac] rounded-full"></div>
-                    <span className="text-[#4372ac] font-medium tracking-widest text-sm uppercase">
-                        Nationwide Coverage
-                    </span>
-                </div>
-                
-                {/* Main headline with impact */}
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
-                    <span className="block">NATIONWIDE</span>
-                    <span className="block text-[#4372ac]">TRANSPORT</span>
-                </h1>
-                
-                {/* Subtitle */}
-                <h2 className="mt-4 text-xl md:text-2xl lg:text-3xl font-semibold text-white/90">
-                    We've Got You Covered
-                </h2>
-                
-                {/* Description */}
-                <div className="mt-6 md:mt-8 max-w-xl">
-                    <p className="text-lg md:text-xl text-white/90 leading-relaxed">
-                        CLE FREIGHT LLC is a premier U.S.-based freight brokerage specializing in Dry Van and Reefer transportation across all 48 states. We connect shippers with reliable, vetted carriers for safe, efficient, and timely freight movement.
-                    </p>
-                </div>
-                
-                {/* Stats bar - optional */}
-                <div className="mt-8 flex flex-wrap gap-6">
-                    <div className="flex items-center gap-3">
-                        <div className="w-2 h-8 bg-[#4372ac] rounded-full"></div>
-                        <div>
-                            <div className="text-2xl font-bold text-white">48</div>
-                            <div className="text-sm text-white/80">States Covered</div>
+                className="relative w-full min-h-[400px] md:min-h-[500px] rounded-sm overflow-hidden bg-cover bg-center shadow-2xl"
+                style={{ backgroundImage: "url('/images/truckhome.jpg')" }}
+            >
+                {/* Enhanced gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#133866]/90 via-[#133866]/70 to-transparent" />
+
+                {/* Subtle pattern overlay */}
+                <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-10" />
+
+                {/* Content container */}
+                <div className="relative z-10 h-full flex items-center">
+                    <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 w-full">
+                        <div className="max-w-2xl">
+                            {/* Decorative element */}
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="w-12 h-1 bg-[#4372ac] rounded-full"></div>
+                                <span className="text-[#4372ac] font-medium tracking-widest text-sm uppercase">
+                                    Nationwide Coverage
+                                </span>
+                            </div>
+
+                            {/* Main headline with impact */}
+                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+                                <span className="block">NATIONWIDE</span>
+                                <span className="block text-[#4372ac]">TRANSPORT</span>
+                            </h1>
+
+                            {/* Subtitle */}
+                            <h2 className="mt-4 text-xl md:text-2xl lg:text-3xl font-semibold text-white/90">
+                                We've Got You Covered
+                            </h2>
+
+                            {/* Description */}
+                            <div className="mt-6 md:mt-8 max-w-xl">
+                                <p className="text-lg md:text-xl text-white/90 leading-relaxed">
+                                    CLE FREIGHT LLC is a premier U.S.-based freight brokerage specializing in Dry Van and Reefer transportation across all 48 states. We connect shippers with reliable, vetted carriers for safe, efficient, and timely freight movement.
+                                </p>
+                            </div>
+
+                            {/* Stats bar - optional */}
+                            <div className="mt-8 flex flex-wrap gap-6">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-2 h-8 bg-[#4372ac] rounded-full"></div>
+                                    <div>
+                                        <div className="text-2xl font-bold text-white">48</div>
+                                        <div className="text-sm text-white/80">States Covered</div>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-2 h-8 bg-[#4372ac] rounded-full"></div>
+                                    <div>
+                                        <div className="text-2xl font-bold text-white">24/7</div>
+                                        <div className="text-sm text-white/80">Support</div>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-2 h-8 bg-[#4372ac] rounded-full"></div>
+                                    <div>
+                                        <div className="text-2xl font-bold text-white">98%</div>
+                                        <div className="text-sm text-white/80">On-Time Rate</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* CTA Buttons */}
+                            <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                                <button className="bg-[#4372ac] hover:bg-[#3a6399] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#4372ac]/30 flex items-center justify-center gap-2">
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                    </svg>
+                                    Request a Free Quote
+                                </button>
+
+
+                            </div>
+
+                            {/* Scroll indicator - optional */}
+                            <div className="mt-10 hidden md:block">
+                                <div className="flex flex-col items-center text-white/60 animate-bounce">
+                                    <span className="text-sm mb-2">Scroll to explore</span>
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="flex items-center gap-3">
-                        <div className="w-2 h-8 bg-[#4372ac] rounded-full"></div>
-                        <div>
-                            <div className="text-2xl font-bold text-white">24/7</div>
-                            <div className="text-sm text-white/80">Support</div>
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <div className="w-2 h-8 bg-[#4372ac] rounded-full"></div>
-                        <div>
-                            <div className="text-2xl font-bold text-white">98%</div>
-                            <div className="text-sm text-white/80">On-Time Rate</div>
-                        </div>
-                    </div>
                 </div>
-                
-                {/* CTA Buttons */}
-                <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                    <button className="bg-[#4372ac] hover:bg-[#3a6399] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#4372ac]/30 flex items-center justify-center gap-2">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                        </svg>
-                        Request a Free Quote
-                    </button>
-                    
-                  
-                </div>
-                
-                {/* Scroll indicator - optional */}
-                <div className="mt-10 hidden md:block">
-                    <div className="flex flex-col items-center text-white/60 animate-bounce">
-                        <span className="text-sm mb-2">Scroll to explore</span>
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    {/* Bottom gradient fade */}
-    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/30 to-transparent"></div>
-</section>
+
+                {/* Bottom gradient fade */}
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/30 to-transparent"></div>
+            </section>
 
             {/* Company Overview Section */}
             <section className="grid grid-cols-1 md:grid-cols-2 gap-12 py-16 px-6 md:px-12 lg:px-24 bg-[#133866]/5">
@@ -210,43 +210,116 @@ const Home = () => {
             </section>
 
             {/* Shippers Section */}
-            <section className="py-12 md:py-20 relative overflow-hidden bg-gradient-to-br from-[#133866] to-[#0d2a4d]">
-                <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-10"></div>
+            <section className="relative py-16 md:py-24 bg-[#0b1f3a] overflow-hidden">
 
-                <div className="max-w-6xl mx-auto px-4 relative z-10">
-                    <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 transform -translate-y-4">
-                        <div className="flex flex-col lg:flex-row items-center gap-8">
-                            <div className="lg:w-2/3">
-                                <span className="inline-block px-4 py-2 bg-[#133866]/10 text-[#133866] rounded-full text-sm font-semibold mb-4">For Shippers</span>
-                                <h3 className="text-3xl md:text-4xl font-bold text-[#133866] mb-6">Get Your Instant Freight Quote</h3>
-                                <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                                    Experience seamless logistics with our competitive rates and transparent pricing.
-                                    Get a fast, reliable quote for your Dry Van or Reefer freight with 24/7 tracking and dedicated support.
+                {/* Decorative blur shapes */}
+                <div className="absolute -top-32 -left-32 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 right-0 w-80 h-80 bg-sky-400/20 rounded-full blur-3xl"></div>
+
+                <div className="relative max-w-7xl mx-auto px-4">
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+
+                        {/* LEFT CONTENT */}
+                        <div>
+                            <span className="text-sm uppercase tracking-widest text-blue-300 font-semibold">
+                                Built for Shippers
+                            </span>
+
+                            <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-white leading-tight">
+                                Freight Solutions
+                                <span className="block text-blue-400">That Move Faster</span>
+                            </h2>
+
+                            <p className="mt-6 text-gray-300 text-lg max-w-xl">
+                                We provide reliable Dry Van and Reefer freight services with
+                                transparent pricing, real-time tracking, and dedicated logistics support.
+                            </p>
+
+                            <div className="mt-8 grid sm:grid-cols-2 gap-4">
+                                {shipperBenefits.map((item, i) => (
+                                    <div
+                                        key={i}
+                                        className="flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-lg px-4 py-3"
+                                    >
+                                        <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+                                        <p className="text-gray-200 text-sm font-medium">{item}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* RIGHT CTA CARD */}
+                        <div className="relative">
+                            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-10 shadow-2xl">
+
+                                <h3 className="text-2xl font-bold text-white text-center">
+                                    Request a Freight Quote
+                                </h3>
+
+                                <p className="text-gray-300 text-center mt-3">
+                                    Fast response • Competitive rates • No hidden fees
                                 </p>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                                    {shipperBenefits.map((benefit, index) => (
-                                        <div key={index} className="flex items-center gap-3 p-3 bg-[#133866]/5 rounded-lg">
-                                            <div className="w-8 h-8 bg-[#4372ac] rounded-full flex items-center justify-center flex-shrink-0">
-                                                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
-                                                </svg>
-                                            </div>
-                                            <span className="text-gray-700 font-medium">{benefit}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="lg:w-1/3">
-                                <div className="bg-gradient-to-br from-white to-[#133866]/5 p-8 rounded-2xl shadow-lg border border-[#133866]/20">
-                                    <div className="w-20 h-20 bg-gradient-to-br from-[#133866] to-[#4372ac] rounded-full flex items-center justify-center mx-auto mb-6">
-                                        <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
+
+                                <div className="mt-8 space-y-4">
+                                    <div className="flex items-center gap-3 text-gray-200 text-sm">
+                                        <span className="w-8 h-8 flex items-center justify-center bg-blue-500/20 rounded-full">🚚</span>
+                                        Dry Van & Reefer Freight
                                     </div>
-                                    <h4 className="text-xl font-bold text-[#133866] text-center mb-4">Fast & Accurate Quotes</h4>
-                                    <p className="text-gray-600 text-center mb-6">Get your customized quote within hours</p>
-                                    <a href="/contact" className="inline-block w-full bg-gradient-to-r from-[#133866] to-[#4372ac] text-white font-semibold py-4 px-6 rounded-xl hover:shadow-xl hover:scale-105 transition-all duration-300 text-center">
-                                        Request Your Quote Now
+                                    <div className="flex items-center gap-3 text-gray-200 text-sm">
+                                        <span className="w-8 h-8 flex items-center justify-center bg-blue-500/20 rounded-full">⏱</span>
+                                        Quick Turnaround Time
+                                    </div>
+                                    <div className="flex items-center gap-3 text-gray-200 text-sm">
+                                        <span className="w-8 h-8 flex items-center justify-center bg-blue-500/20 rounded-full">📍</span>
+                                        Nationwide Coverage
+                                    </div>
+                                </div>
+
+                                <a
+                                    href="/contact"
+                                    className="mt-8 block w-full text-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-4 rounded-xl transition duration-300"
+                                >
+                                    Get My Quote
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            
+            
+
+            {/* NEW – Callout Banner between Shippers and Carriers */}
+            <section className="relative py-12 md:py-16">
+                <div className="max-w-7xl mx-auto px-4">
+                    <div className="rounded-2xl overflow-hidden bg-[#111827] border border-white/10 shadow-2xl">
+                        <div className="grid grid-cols-1 md:grid-cols-2">
+                            {/* Left visual (uses an existing image; replace if desired) */}
+                            <div
+                                className="min-h-[220px] md:min-h-[280px] bg-cover bg-center"
+                                style={{ backgroundImage: "url('/images/truckoverview.jpg')" }}
+                            />
+                            {/* Right content */}
+                            <div className="p-8 md:p-12 flex flex-col justify-center">
+                                <div className="flex items-center gap-2 mb-3">
+                                    <span className="w-10 h-1 bg-[#4372ac]"></span>
+                                    <span className="text-[#4372ac] font-semibold tracking-wider uppercase text-xs">
+                                        Skip the Guesswork
+                                    </span>
+                                </div>
+                                <h3 className="text-3xl md:text-4xl font-bold text-white">
+                                    Let our assistant deliver the exact info you need
+                                </h3>
+                                <p className="mt-3 text-gray-300">
+                                    Fast answers, clear pricing, and guidance tailored to your shipment.
+                                </p>
+                                <div className="mt-6">
+                                    <a
+                                        href="/contact"
+                                        className="inline-block bg-[#4372ac] hover:bg-[#3a6399] text-white font-semibold px-6 py-3 rounded-lg transition"
+                                    >
+                                        Find Your Answers
                                     </a>
                                 </div>
                             </div>
@@ -255,126 +328,113 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Carriers Section */}
-            <section className="py-12 md:py-20 bg-white">
-                <div className="max-w-6xl mx-auto px-4">
-                    <div className="flex flex-col lg:flex-row items-center gap-12">
-                        <div className="lg:w-1/2">
-                            <div className="relative">
-                                <div className="absolute -top-6 left-0 w-16 h-16 bg-[#133866]/10 rounded-full opacity-50"></div>
-                                <div className="absolute -bottom-6 right-0 w-20 h-20 bg-[#133866]/5 rounded-full opacity-50"></div>
-                                <div className="relative bg-white rounded-2xl shadow-xl p-8 border border-[#133866]/10">
-                                    <span className="inline-block px-4 py-2 bg-[#4372ac]/10 text-[#4372ac] rounded-full text-sm font-semibold mb-4">Carrier Partnership</span>
-                                    <h3 className="text-3xl md:text-4xl font-bold text-[#133866] mb-6">Grow Your Business With Us</h3>
-                                    <p className="text-lg text-gray-700 mb-8">
-                                        Join our network of trusted carriers and enjoy consistent loads, fair rates, and respectful partnerships.
-                                    </p>
-                                    <div className="space-y-6">
-                                        {carrierBenefits.map((benefit, index) => (
-                                            <div key={index} className="flex items-start gap-4 p-4 bg-gradient-to-r from-[#133866]/5 to-white rounded-xl hover:shadow-md transition-shadow">
-                                                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[#133866]/10 to-[#4372ac]/10 rounded-lg flex items-center justify-center">
-                                                    <svg className="w-6 h-6 text-[#4372ac]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={benefit.icon} />
-                                                    </svg>
-                                                </div>
-                                                <div>
-                                                    <h4 className="font-semibold text-[#133866] mb-1">{benefit.title}</h4>
-                                                    <p className="text-gray-600">{benefit.description}</p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            {/* Carriers – New Bold Design */}
+            <section className="relative py-20 md:py-28 bg-[#0a1628] overflow-hidden">
 
-                        <div className="lg:w-1/2">
-                            <div className="bg-gradient-to-br from-[#133866] to-[#0d2a4d] rounded-2xl shadow-2xl p-8 md:p-12 text-white">
-                                <h4 className="text-2xl font-bold mb-8 text-center">Why Partner With CLE FREIGHT?</h4>
-                                <div className="space-y-6 mb-10">
-                                    <div className="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
-                                        <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                            <span className="text-xl font-bold text-white">✓</span>
-                                        </div>
-                                        <div>
-                                            <p className="font-semibold text-lg">Fair Rates & On-Time Pay</p>
-                                            <p className="text-gray-300 text-sm">Competitive pricing with reliable payment schedules</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
-                                        <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                            <span className="text-xl font-bold text-white">✓</span>
-                                        </div>
-                                        <div>
-                                            <p className="font-semibold text-lg">Clear Communication</p>
-                                            <p className="text-gray-300 text-sm">Proactive updates and dedicated support</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
-                                        <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                            <span className="text-xl font-bold text-white">✓</span>
-                                        </div>
-                                        <div>
-                                            <p className="font-semibold text-lg">Consistent Opportunities</p>
-                                            <p className="text-gray-300 text-sm">Regular freight across all 48 states</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="pt-8 border-t border-white/20">
-                                    <a href="/contact" className="inline-flex items-center justify-center w-full bg-white text-[#133866] font-bold py-4 px-6 rounded-xl hover:bg-gray-100 hover:scale-105 transition-all duration-300">
-                                        Join Our Carrier Network
-                                        <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                {/* subtle grid background */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
 
-            {/* Trust & Compliance Section */}
-            {/* <section className="py-12 md:py-20 bg-gradient-to-b from-gray-50 to-white">
-                <div className="max-w-6xl mx-auto px-4">
-                    <div className="text-center mb-12">
-                        <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Trust & Compliance</h3>
-                        <p className="text-lg text-gray-600 max-w-2xl mx-auto">Fully licensed and insured for your peace of mind</p>
+                <div className="relative max-w-7xl mx-auto px-4">
+
+                    {/* Header */}
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <span className="text-sm tracking-widest uppercase text-blue-400 font-semibold">
+                            For Carriers
+                        </span>
+                        <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-white">
+                            Built by Brokers
+                            <span className="block text-blue-400">Who Respect Carriers</span>
+                        </h2>
+                        <p className="mt-6 text-gray-300 text-lg">
+                            We value strong relationships with owner-operators and fleets.
+                            Clear communication, fair rates, and steady freight — always.
+                        </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {complianceItems.map((item, index) => (
-                            <div key={index} className="group relative">
-                                <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:border-blue-200">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                                        <svg className="w-8 h-8 text-[#133866]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={item.icon} />
-                                        </svg>
-                                    </div>
-                                    <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider text-center mb-2">{item.label}</p>
-                                    <p className="text-2xl font-bold text-gray-900 text-center">{item.value}</p>
-                                    <p className="text-gray-600 text-center mt-4">{item.description}</p>
+                    {/* Content Grid */}
+                    <div className="grid lg:grid-cols-3 gap-10">
+
+                        {/* Benefits */}
+                        {carrierBenefits.map((item, i) => (
+                            <div
+                                key={i}
+                                className="bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-8 hover:border-blue-500/40 transition"
+                            >
+                                <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center mb-6">
+                                    <svg
+                                        className="w-6 h-6 text-blue-400"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d={item.icon}
+                                        />
+                                    </svg>
                                 </div>
+
+                                <h3 className="text-xl font-bold text-white mb-3">
+                                    {item.title}
+                                </h3>
+
+                                <p className="text-gray-300 text-sm leading-relaxed">
+                                    {item.description}
+                                </p>
                             </div>
                         ))}
                     </div>
 
-                    <div className="mt-12 bg-gradient-to-r from-[#133866] to-blue-700 rounded-2xl shadow-2xl p-8 md:p-12">
-                        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                            <div className="text-white">
-                                <h4 className="text-2xl font-bold mb-3">Ready to Ship With Confidence?</h4>
-                                <p className="text-blue-100">Get in touch with our logistics experts today</p>
-                            </div>
-                            <a href="/contact" className="inline-flex items-center bg-white text-[#133866] font-bold px-8 py-4 rounded-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300">
-                                Contact Us Now
-                                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                                </svg>
-                            </a>
+                    {/* Stats Bar */}
+                    <div className="mt-20 grid sm:grid-cols-3 gap-8 text-center">
+                        <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                            <p className="text-4xl font-extrabold text-blue-400">48</p>
+                            <p className="text-gray-300 mt-2">States Covered</p>
+                        </div>
+                        <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                            <p className="text-4xl font-extrabold text-blue-400">24/7</p>
+                            <p className="text-gray-300 mt-2">Dispatcher Support</p>
+                        </div>
+                        <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                            <p className="text-4xl font-extrabold text-blue-400">Fast</p>
+                            <p className="text-gray-300 mt-2">On-Time Payments</p>
                         </div>
                     </div>
+
+                    {/* CTA */}
+                    <div className="mt-20 text-center">
+                        <a
+                            href="/contact"
+                            className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg px-10 py-5 rounded-2xl transition"
+                        >
+                            Join CLE Freight Carrier Network
+                            <svg
+                                className="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                />
+                            </svg>
+                        </a>
+
+                        <p className="mt-4 text-gray-400 text-sm">
+                            Owner-operators • Small fleets • Nationwide freight
+                        </p>
+                    </div>
+
                 </div>
-            </section> */}
+            </section>
+
+
+
 
         </div>
     )

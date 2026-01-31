@@ -1,6 +1,6 @@
 function About() {
     return (
-        <div className="px-4 ">
+        <div className="min-h-screen bg-white">
 
             {/* Hero with background image */}
             <section

@@ -1,42 +1,75 @@
+import { useState } from 'react';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaTruck, FaUserTie, FaCheckCircle } from 'react-icons/fa';
+
 const Contact = () => {
+    const [form, setForm] = useState({
+        name: '',
+        company: '',
+        email: '',
+        phone: '',
+        pickup: '',
+        delivery: '',
+        loadType: '',
+        weight: '',
+        notes: ''
+    });
+
+    const [activeTab, setActiveTab] = useState('shippers');
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setForm((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('Quote Request:', form);
+        alert("Thanks! Your quote request has been received. We'll contact you within 24 hours.");
+        setForm({
+            name: '',
+            company: '',
+            email: '',
+            phone: '',
+            pickup: '',
+            delivery: '',
+            loadType: '',
+            weight: '',
+            notes: ''
+        });
+    };
+
     return (
-        <div className="px-4 md:px-1">
+        <div className="min-h-screen">
 
-
-            {/* Hero with background image */}
+            {/* Hero Section - About Page Style */}
             <section
-                className="relative w-full min-h-[380px] rounded-sm overflow-hidden bg-cover bg-center"
+                className="relative w-full min-h-[400px] rounded-sm overflow-hidden bg-cover bg-center mt-6"
                 style={{ backgroundImage: "url('/images/truckcontact.jpg')" }}
             >
-                <div className="absolute inset-0 bg-black/40" />
-                <div className="relative z-10 max-w-3xl text-left text-white px-6 py-16">
-                    <h1 className="text-3xl md:text-4xl font-bold tracking-wide">CONTACT US</h1>
-
-                    <p className="mt-4 text-base md:text-lg text-gray-100">
-                        Have questions or need a freight quote? Our experienced logistics team is ready to
-                        assist you with fast, reliable, and cost-effective transportation solutions.
-                        Whether you are shipping locally or nationwide, we are here to make your delivery
-                        process smooth and stress-free.
+                <div className="absolute inset-0 bg-gradient-to-r from-[#133866]/80 via-[#133866]/60 to-transparent" />
+                <div className="relative z-10 max-w-3xl text-left text-white px-6 md:px-12 py-16 md:py-24">
+                    <div className="inline-flex items-center gap-2 mb-4">
+                        <div className="w-10 h-1 bg-[#4372ac]"></div>
+                        <span className="text-[#4372ac] font-medium tracking-wider">GET IN TOUCH</span>
+                    </div>
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+                        Contact <span className="text-[#4372ac]">CLE Freight</span>
+                    </h1>
+                    <p className="mt-6 text-lg md:text-xl text-gray-100 max-w-2xl leading-relaxed">
+                        Reach out to our logistics experts for reliable, efficient, and cost-effective transportation solutions. Fill out the form below or use our contact information to connect directly.
                     </p>
-
-                    <p className="mt-3 text-base md:text-lg text-gray-200">
-                        Contact us today to discuss your shipping needs, request a custom quote, or learn
-                        more about how CLE FREIGHT LLC can support your business with dependable carrier
-                        capacity and professional freight brokerage services.
-                    </p>
-
-
+                    <div className="flex flex-wrap gap-4 mt-6">
+                        <a href="#quote" className="bg-[#4372ac] hover:bg-[#3a6399] text-white px-8 py-3 rounded-xl font-semibold text-lg transition duration-300">
+                            Request a Quote
+                        </a>
+                        <a href="tel:5551234567" className="border-2 border-white hover:bg-white hover:text-gray-900 text-white px-8 py-3 rounded-xl font-semibold text-lg transition duration-300">
+                            Call Now: (555) 123-4567
+                        </a>
+                    </div>
                 </div>
             </section>
-            {/* Breadcrumb */}
-            {/* <nav className="text-sm text-gray-500 mb-4 px-3">
-                <a href="/" className="hover:text-gray-700">Home</a>
-                <span className="mx-2">/</span>
-                <span className="text-gray-700 font-medium">Contact</span>
-            </nav> */}
         </div>
     );
-}
+};
 
-
-export default Contact
+export default Contact;
