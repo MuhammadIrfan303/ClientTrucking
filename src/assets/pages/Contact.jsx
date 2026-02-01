@@ -41,7 +41,7 @@ const Contact = () => {
     return (
         <div className="min-h-screen">
 
-            {/* Hero Section - About Page Style */}
+            {/* Hero Section hghasj - About Page Style */}
             <section
                 className="relative w-full min-h-[400px] rounded-sm overflow-hidden bg-cover bg-center mt-6"
                 style={{ backgroundImage: "url('/images/truckcontact.jpg')" }}
