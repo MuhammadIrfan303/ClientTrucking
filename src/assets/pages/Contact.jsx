@@ -35,6 +35,8 @@ const Contact = () => {
             loadType: '',
             weight: '',
             notes: ''
+
+          
         });
     };
 
@@ -59,11 +61,14 @@ const Contact = () => {
                         Reach out to our logistics experts for reliable, efficient, and cost-effective transportation solutions. Fill out the form below or use our contact information to connect directly.
                     </p>
                     <div className="flex flex-wrap gap-4 mt-6">
-                        <a href="#quote" className="bg-[#4372ac] hover:bg-[#3a6399] text-white px-8 py-3 rounded-xl font-semibold text-lg transition duration-300">
-                            Request a Quote
+                       
+                        {/* Updated: phone link uses tel:+18624173188 and shows the correct number */}
+                        <a href="tel:+18624173188" className="border-2 border-white hover:bg-white hover:text-gray-900 text-white px-8 py-3 rounded-xl font-semibold text-lg transition duration-300 flex items-center gap-2">
+                            <FaPhone /> +1 (862) 417-3188
                         </a>
-                        <a href="tel:5551234567" className="border-2 border-white hover:bg-white hover:text-gray-900 text-white px-8 py-3 rounded-xl font-semibold text-lg transition duration-300">
-                            Call Now: (555) 123-4567
+                        {/* New: email link opens the user's email app */}
+                        <a href="mailto:clefreight@outlook.com" className="border-2 border-white hover:bg-white hover:text-gray-900 text-white px-8 py-3 rounded-xl font-semibold text-lg transition duration-300 flex items-center gap-2">
+                            <FaEnvelope /> clefreight@outlook.com
                         </a>
                     </div>
                 </div>

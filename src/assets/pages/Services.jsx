@@ -199,29 +199,7 @@ const Services = () => {
                 </div>
             </section>
 
-            {/* Service Guarantee Section */}
-            <section className="py-16 md:py-24 px-4 md:px-8 lg:px-16">
-               
-                    
-                    {/* CTA */}
-                    <div className="mt-16 text-center">
-                        <h3 className="text-2xl md:text-3xl font-bold text-[#133866] mb-6">
-                            Ready to Ship with Confidence?
-                        </h3>
-                        <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-                            Experience the CLE FREIGHT difference. Get a free, no-obligation quote for your next shipment.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <button className="bg-[#4372ac] hover:bg-[#3a6399] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105">
-                                Request Quote Now
-                            </button>
-                            <button className="bg-white border-2 border-[#133866] text-[#133866] px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:bg-[#133866] hover:text-white">
-                                Call: (555) 123-4567
-                            </button>
-                        </div>
-                    </div>
-                
-            </section>
+          
         </div>
     );
 }

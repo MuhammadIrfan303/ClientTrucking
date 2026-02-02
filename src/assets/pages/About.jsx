@@ -1,4 +1,8 @@
 function About() {
+
+    const Quotebtn = () => {
+        alert("We’re currently working on this page to improve your experience. Please check back soon")
+    }
     return (
         <div className="min-h-screen bg-white">
 
@@ -17,9 +21,9 @@ function About() {
                         About CLE <span className="text-[#4372ac]">Freight</span>
                     </h1>
                     <p className="mt-6 text-lg md:text-xl text-gray-100 max-w-2xl leading-relaxed">
-                        CLE FREIGHT LLC is a premier freight brokerage headquartered in Louisville, Kentucky.
-                        We specialize in building lasting partnerships through transparent service, competitive
-                        pricing, and unwavering reliability in the transportation industry.
+                        CLE FREIGHT LLC is a U.S.-based freight brokerage specializing in Dry Van and Reefer transportation nationwide. Founded by Cheikh Fadel, we focus on reliable service, strong communication, and vetted carrier partnerships.
+
+
                     </p>
                 </div>
             </section>
@@ -169,12 +173,13 @@ function About() {
                         Join hundreds of satisfied clients who trust CLE Freight for their logistics needs
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button className="bg-[#4372ac] hover:bg-[#3a6399] text-white font-semibold px-8 py-3 rounded-xl transition-colors">
+
+                        <button onClick={() => Quotebtn()} className="bg-[#4372ac] hover:bg-[#3a6399] text-white font-semibold px-8 py-3 rounded-xl transition-colors">
                             Get a Free Quote
                         </button>
-                        <button className="bg-transparent border-2 border-white hover:bg-white/10 text-white font-semibold px-8 py-3 rounded-xl transition-colors">
+                        <a href="/contact" className="bg-transparent border-2 border-white hover:bg-white/10 text-white font-semibold px-8 py-3 rounded-xl transition-colors">
                             Contact Our Team
-                        </button>
+                        </a>
                     </div>
                 </div>
             </section>

@@ -1,5 +1,9 @@
 const Home = () => {
 
+    const chatbtn = () => {
+        alert("We’re currently working on this button functionality to improve your experience. Please check back soon")
+    }
+
     const servicesData = [
         {
             title: "Reefer / Temperature-Controlled Freight",
@@ -27,6 +31,16 @@ const Home = () => {
             description: "Precision scheduling and coordination services ensuring timely pickup and delivery with proactive communication."
         }
     ];
+
+    // NEW: Trust reasons for "Why Choose CLE FREIGHT"
+    const trustReasons = [
+        "FMCSA Licensed Freight Brokerage",
+        "Vetted & Insured Carrier Network",
+        "Nationwide Coverage",
+        "Real-Time Tracking & Updates",
+        "Fast Communication & Reliable Service"
+    ];
+
     return (
         <div className=" min-h-screen space-y-15 md:px-1 mb-11" >
 
@@ -55,7 +69,7 @@ const Home = () => {
 
                             {/* Main headline with impact */}
                             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
-                                <span className="block">NATIONWIDE</span>
+                                <span className="block">CLE FREIGHT LLC</span>
                                 <span className="block text-[#4372ac]">TRANSPORT</span>
                             </h1>
 
@@ -186,9 +200,12 @@ const Home = () => {
                             <div className="w-10 h-1 bg-[#4372ac]"></div>
                         </div>
                         <h3 className="text-3xl md:text-4xl font-bold text-[#133866] mb-4">Our Services</h3>
+
+                        {/* CHANGED: Branding sentence */}
                         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                            At Nationwide Transport Services, <span className="text-[#4372ac] font-medium">we offer several transportation solutions</span> to meet your shipping and hauling needs. Choose the option that best fits your application.
+                            At CLE FREIGHT LLC, <span className="text-[#4372ac] font-medium">we provide several transportation solutions</span> to meet your shipping and hauling needs. Choose the option that best fits your application.
                         </p>
+
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 py-10">
@@ -208,7 +225,35 @@ const Home = () => {
                     </div>
                 </div>
             </section>
+            {/* NEW – Trust / Why Choose CLE FREIGHT Section */}
+            <section className="py-16 bg-[#f8fafc]">
+                <div className="max-w-7xl mx-auto px-4 md:px-12 lg:px-24">
+                    <div className="text-center mb-10">
+                        <div className="inline-flex items-center gap-2 mb-4">
+                            <div className="w-10 h-1 bg-[#4372ac]"></div>
+                            <span className="text-[#4372ac] font-medium tracking-wider">WHY CHOOSE CLE FREIGHT</span>
+                            <div className="w-10 h-1 bg-[#4372ac]"></div>
+                        </div>
+                        <h3 className="text-3xl md:text-4xl font-bold text-[#133866]">Why Choose Us?</h3>
+                    </div>
 
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {trustReasons.map((reason, i) => (
+                            <div
+                                key={i}
+                                className="flex items-start gap-4 bg-white rounded-xl p-6 border border-[#133866]/10 shadow-sm"
+                            >
+                                <span className="flex-shrink-0 w-10 h-10 rounded-full bg-[#4372ac]/10 flex items-center justify-center">
+                                    <svg className="w-6 h-6 text-[#4372ac]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </span>
+                                <p className="text-gray-700 font-medium">{reason}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
             {/* Shippers Section */}
             <section className="relative py-16 md:py-24 bg-[#0b1f3a] overflow-hidden">
 
@@ -287,8 +332,8 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-            
-            
+
+
 
             {/* NEW – Callout Banner between Shippers and Carriers */}
             <section className="relative py-12 md:py-16">
@@ -315,12 +360,13 @@ const Home = () => {
                                     Fast answers, clear pricing, and guidance tailored to your shipment.
                                 </p>
                                 <div className="mt-6">
-                                    <a
-                                        href="/contact"
+                                    <button
+                                        onClick={() => chatbtn()}
+
                                         className="inline-block bg-[#4372ac] hover:bg-[#3a6399] text-white font-semibold px-6 py-3 rounded-lg transition"
                                     >
                                         Find Your Answers
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -330,12 +376,9 @@ const Home = () => {
 
             {/* Carriers – New Bold Design */}
             <section className="relative py-20 md:py-28 bg-[#0a1628] overflow-hidden">
-
                 {/* subtle grid background */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-
                 <div className="relative max-w-7xl mx-auto px-4">
-
                     {/* Header */}
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <span className="text-sm tracking-widest uppercase text-blue-400 font-semibold">
@@ -405,11 +448,14 @@ const Home = () => {
 
                     {/* CTA */}
                     <div className="mt-20 text-center">
+
+
+                        {/* NEW: Direct link to Carrier Setup page */}
                         <a
-                            href="/contact"
-                            className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg px-10 py-5 rounded-2xl transition"
+                            href="/carrier"
+                            className="ml-4 inline-flex items-center gap-3 bg-[#4372ac] hover:bg-[#3a6399] text-white font-bold text-lg px-10 py-5 rounded-2xl transition"
                         >
-                            Join CLE Freight Carrier Network
+                            Carrier Partners
                             <svg
                                 className="w-5 h-5"
                                 fill="none"
@@ -420,7 +466,7 @@ const Home = () => {
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                     strokeWidth="2"
-                                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                    d="M13 7l5 5m0 0l-5 5m5-5H6"
                                 />
                             </svg>
                         </a>
@@ -432,7 +478,29 @@ const Home = () => {
 
                 </div>
             </section>
+            <section className="py-16 bg-white">
+                <div className="max-w-7xl mx-auto px-4 md:px-12 lg:px-24">
+                    <div className="text-center mb-10">
+                        <div className="inline-flex items-center gap-2 mb-4">
+                            <div className="w-10 h-1 bg-[#4372ac]"></div>
+                            <span className="text-[#4372ac] font-medium tracking-wider">TESTIMONIALS</span>
+                            <div className="w-10 h-1 bg-[#4372ac]"></div>
+                        </div>
+                        <h3 className="text-3xl md:text-4xl font-bold text-[#133866]">What our partners say</h3>
+                    </div>
 
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="bg-gradient-to-br from-white to-[#133866]/5 p-6 md:p-8 rounded-2xl border border-[#133866]/10 shadow-sm">
+                            <div className="text-2xl">⭐</div>
+                            <p className="mt-3 text-gray-700 text-lg">“Professional communication and smooth delivery.”</p>
+                        </div>
+                        <div className="bg-gradient-to-br from-white to-[#133866]/5 p-6 md:p-8 rounded-2xl border border-[#133866]/10 shadow-sm">
+                            <div className="text-2xl">⭐</div>
+                            <p className="mt-3 text-gray-700 text-lg">“Reliable brokerage partner with great service.”</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
 
 
@@ -470,25 +538,34 @@ const carrierBenefits = [
     }
 ]
 
-const complianceItems = [
-    {
-        icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
-        label: "MC Number",
-        value: "MC-1775717",
-        description: "Fully licensed freight brokerage"
-    },
-    {
-        icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
-        label: "DOT Number",
-        value: "DOT-4491865",
-        description: "Department of Transportation registered"
-    },
-    {
-        icon: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
-        label: "Coverage Area",
-        value: "48 States",
-        description: "Nationwide freight network"
-    }
-]
+
 
 export default Home
+
+
+{
+    {/* NEW: Testimonials Section (Later but Powerful) */ }
+    <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-12 lg:px-24">
+            <div className="text-center mb-10">
+                <div className="inline-flex items-center gap-2 mb-4">
+                    <div className="w-10 h-1 bg-[#4372ac]"></div>
+                    <span className="text-[#4372ac] font-medium tracking-wider">TESTIMONIALS</span>
+                    <div className="w-10 h-1 bg-[#4372ac]"></div>
+                </div>
+                <h3 className="text-3xl md:text-4xl font-bold text-[#133866]">What our partners say</h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-gradient-to-br from-white to-[#133866]/5 p-6 md:p-8 rounded-2xl border border-[#133866]/10 shadow-sm">
+                    <div className="text-2xl">⭐</div>
+                    <p className="mt-3 text-gray-700 text-lg">“Professional communication and smooth delivery.”</p>
+                </div>
+                <div className="bg-gradient-to-br from-white to-[#133866]/5 p-6 md:p-8 rounded-2xl border border-[#133866]/10 shadow-sm">
+                    <div className="text-2xl">⭐</div>
+                    <p className="mt-3 text-gray-700 text-lg">“Reliable brokerage partner with great service.”</p>
+                </div>
+            </div>
+        </div>
+    </section>
+}

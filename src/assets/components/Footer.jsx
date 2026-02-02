@@ -91,7 +91,7 @@ export default function Footer() {
                                         href="tel:+18624173188"
                                         className="text-gray-400 hover:text-blue-400 transition-colors text-sm mt-1 block"
                                     >
-                                        (862) 417-3188
+                                        +18624173188
                                     </a>
                                 </div>
                             </li>
@@ -151,6 +151,12 @@ export default function Footer() {
             {/* Bottom Bar */}
             <div className="bg-slate-950 border-t border-slate-800">
                 <div className="max-w-7xl mx-auto px-4 py-6">
+
+                    {/* Legitimacy info (client requirement) */}
+                    <div className="text-center text-gray-300 text-sm mb-3">
+                        <span className="font-semibold">CLE FREIGHT LLC</span> | Freight Brokerage | MC# 1775717 | DOT# 4491865 | Louisville, KY
+                    </div>
+
                     <div className="flex flex-col md:flex-row justify-between items-center">
                         <div className="text-gray-500 text-sm mb-4 md:mb-0">
                             © {currentYear} CLE FREIGHT LLC. All rights reserved.
