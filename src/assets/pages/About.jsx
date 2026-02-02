@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
+import WhyChoose from "../components/layoutsections/Whychoose";
+
 function About() {
 
-    const Quotebtn = () => {
-        alert("We’re currently working on this page to improve your experience. Please check back soon")
-    }
+    
     return (
         <div className="min-h-screen bg-white">
 
@@ -110,7 +111,8 @@ function About() {
             </section>
 
             {/* Why Choose Us */}
-            <section className="py-12 md:py-20">
+            <WhyChoose/>
+            {/* <section className="py-12 md:py-20">
                 <div className="text-center mb-12">
                     <div className="inline-flex items-center gap-2 mb-4">
                         <div className="w-10 h-1 bg-[#4372ac]"></div>
@@ -163,7 +165,7 @@ function About() {
                         </div>
                     ))}
                 </div>
-            </section>
+            </section> */}
 
             {/* CTA Section */}
             <section className="py-16 md:py-24 bg-gradient-to-r from-[#133866] to-[#0d2a4d] rounded-3xl text-center text-white mb-12">
@@ -174,12 +176,12 @@ function About() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
 
-                        <button onClick={() => Quotebtn()} className="bg-[#4372ac] hover:bg-[#3a6399] text-white font-semibold px-8 py-3 rounded-xl transition-colors">
+                        <Link to="/quote" className="bg-[#4372ac] hover:bg-[#3a6399] text-white font-semibold px-8 py-3 rounded-xl transition-colors">
                             Get a Free Quote
-                        </button>
-                        <a href="/contact" className="bg-transparent border-2 border-white hover:bg-white/10 text-white font-semibold px-8 py-3 rounded-xl transition-colors">
+                        </Link>
+                        <Link to="/contact" className="bg-transparent border-2 border-white hover:bg-white/10 text-white font-semibold px-8 py-3 rounded-xl transition-colors">
                             Contact Our Team
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </section>

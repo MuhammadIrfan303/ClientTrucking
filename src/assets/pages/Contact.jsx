@@ -2,43 +2,9 @@ import { useState } from 'react';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaTruck, FaUserTie, FaCheckCircle } from 'react-icons/fa';
 
 const Contact = () => {
-    const [form, setForm] = useState({
-        name: '',
-        company: '',
-        email: '',
-        phone: '',
-        pickup: '',
-        delivery: '',
-        loadType: '',
-        weight: '',
-        notes: ''
-    });
+     
 
-    const [activeTab, setActiveTab] = useState('shippers');
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setForm((prev) => ({ ...prev, [name]: value }));
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Quote Request:', form);
-        alert("Thanks! Your quote request has been received. We'll contact you within 24 hours.");
-        setForm({
-            name: '',
-            company: '',
-            email: '',
-            phone: '',
-            pickup: '',
-            delivery: '',
-            loadType: '',
-            weight: '',
-            notes: ''
-
-          
-        });
-    };
+     
 
     return (
         <div className="min-h-screen">
@@ -73,6 +39,95 @@ const Contact = () => {
                     </div>
                 </div>
             </section>
+
+            {/* New: Contact Details Section */}
+            <section className="max-w-6xl mx-auto px-6 md:px-12 py-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="bg-white shadow-md rounded-xl p-6 flex items-start gap-3">
+                        <FaPhone className="text-[#4372ac] text-2xl mt-1" />
+                        <div>
+                            <h3 className="font-semibold text-gray-900">Phone</h3>
+                            <a href="tel:+18624173188" className="text-[#133866] hover:underline">
+                                +1 (862) 417-3188
+                            </a>
+                        </div>
+                    </div>
+
+                    <div className="bg-white shadow-md rounded-xl p-6 flex items-start gap-3">
+                        <FaEnvelope className="text-[#4372ac] text-2xl mt-1" />
+                        <div>
+                            <h3 className="font-semibold text-gray-900">Email</h3>
+                            <a href="mailto:clefreight@outlook.com" className="text-[#133866] hover:underline">
+                                clefreight@outlook.com
+                            </a>
+                        </div>
+                    </div>
+
+                    <div className="bg-white shadow-md rounded-xl p-6 flex items-start gap-3">
+                        <FaMapMarkerAlt className="text-[#4372ac] text-2xl mt-1" />
+                        <div>
+                            <h3 className="font-semibold text-gray-900">Address</h3>
+                            <a
+                                href="https://www.google.com/maps/search/?api=1&query=882+Markham+Ln,+Louisville,+KY+40207"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[#133866] hover:underline"
+                            >
+                                882 Markham Ln, Louisville, KY 40207
+                            </a>
+                        </div>
+                    </div>
+
+                    <div className="bg-white shadow-md rounded-xl p-6 flex items-start gap-3">
+                        <FaClock className="text-[#4372ac] text-2xl mt-1" />
+                        <div>
+                            <h3 className="font-semibold text-gray-900">Business Hours</h3>
+                            <p className="text-[#133866]">Monday – Friday</p>
+                            <p className="text-gray-700">8 AM – 6 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            {/* New: Map Section */}
+            <section className="max-w-6xl mx-auto px-6 md:px-12 py-8">
+                <div className="bg-white shadow-md rounded-xl overflow-hidden">
+                    <div className="p-6">
+                        <h2 className="text-2xl font-bold text-[#133866] mb-2">Find Us</h2>
+                        <p className="text-gray-700 mb-4">882 Markham Ln, Louisville, KY 40207</p>
+                    </div>
+                    <iframe
+                        title="CLE Freight Location"
+                        src="https://www.google.com/maps?q=882+Markham+Ln,+Louisville,+KY+40207&output=embed"
+                        loading="lazy"
+                        className="w-full h-[360px] border-0"
+                        referrerPolicy="no-referrer-when-downgrade"
+                    />
+                </div>
+            </section>
+
+            {/* New: FAQ Section */}
+            <section className="max-w-6xl mx-auto px-6 md:px-12 py-8">
+                <div className="bg-white shadow-md rounded-xl p-6">
+                    <h2 className="text-2xl font-bold text-[#133866] mb-4">Frequently Asked Questions</h2>
+                    <div className="space-y-3">
+                        <details className="group">
+                            <summary className="cursor-pointer font-semibold text-[#133866]">How quickly can you provide a quote?</summary>
+                            <p className="mt-2 text-gray-700">Most quotes are provided within 24 hours of receiving complete details.</p>
+                        </details>
+                        <details className="group">
+                            <summary className="cursor-pointer font-semibold text-[#133866]">What types of freight do you handle?</summary>
+                            <p className="mt-2 text-gray-700">We handle FTL, LTL, refrigerated (reefer), dry van, and expedited shipments.</p>
+                        </details>
+                        <details className="group">
+                            <summary className="cursor-pointer font-semibold text-[#133866]">Do you offer tracking?</summary>
+                            <p className="mt-2 text-gray-700">Yes, we provide real-time tracking and status updates for all shipments.</p>
+                        </details>
+                    </div>
+                </div>
+            </section>
+ 
         </div>
     );
 };

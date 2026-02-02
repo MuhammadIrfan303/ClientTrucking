@@ -1,48 +1,20 @@
+import { Link } from "react-router-dom";
+import Services from "../components/layoutsections/Services";
+import Testimonal from "../components/layoutsections/Testimonal";
+import WhyChoose from "../components/layoutsections/Whychoose";
+
 const Home = () => {
 
     const chatbtn = () => {
         alert("We’re currently working on this button functionality to improve your experience. Please check back soon")
     }
 
-    const servicesData = [
-        {
-            title: "Reefer / Temperature-Controlled Freight",
-            description: "Refrigerated transport solutions for temperature-sensitive products including food, pharmaceuticals, and perishable goods."
-        },
-        {
-            title: "Dry Van Freight",
-            description: "Standard enclosed trailer service for non-perishable goods, offering reliable nationwide shipping for general cargo."
-        },
 
-        {
-            title: "Full Truckload (FTL) Shipping",
-            description: "Dedicated truckload service for large shipments that require exclusive use of an entire trailer for maximum security and efficiency."
-        },
-        {
-            title: "Nationwide Freight Coverage",
-            description: "Comprehensive logistics network providing reliable shipping solutions to all 48 contiguous states with consistent service quality."
-        },
-        {
-            title: "Carrier Dispatch & Load Tracking",
-            description: "Professional dispatch coordination and real-time shipment tracking for complete visibility and communication throughout transit."
-        },
-        {
-            title: "On-Time Pickup and Delivery Coordination",
-            description: "Precision scheduling and coordination services ensuring timely pickup and delivery with proactive communication."
-        }
-    ];
 
-    // NEW: Trust reasons for "Why Choose CLE FREIGHT"
-    const trustReasons = [
-        "FMCSA Licensed Freight Brokerage",
-        "Vetted & Insured Carrier Network",
-        "Nationwide Coverage",
-        "Real-Time Tracking & Updates",
-        "Fast Communication & Reliable Service"
-    ];
+
 
     return (
-        <div className=" min-h-screen space-y-15 md:px-1 mb-11" >
+        <div className="min-h-screen space-y-15 md:px-1 mb-11" >
 
             {/* Hero with background image */}
             <section
@@ -112,12 +84,12 @@ const Home = () => {
 
                             {/* CTA Buttons */}
                             <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                                <button className="bg-[#4372ac] hover:bg-[#3a6399] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#4372ac]/30 flex items-center justify-center gap-2">
+                                <Link to='/quote' className="bg-[#4372ac] hover:bg-[#3a6399] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#4372ac]/30 flex items-center justify-center gap-2">
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                     </svg>
                                     Request a Free Quote
-                                </button>
+                                </Link>
 
 
                             </div>
@@ -191,69 +163,10 @@ const Home = () => {
             </section>
 
             {/* Services Section */}
-            <section className="py-16 bg-white">
-                <div className="px-4 md:px-12 lg:px-24">
-                    <div className="text-center mb-12">
-                        <div className="inline-flex items-center gap-2 mb-4">
-                            <div className="w-10 h-1 bg-[#4372ac]"></div>
-                            <span className="text-[#4372ac] font-medium tracking-wider">OUR SERVICES</span>
-                            <div className="w-10 h-1 bg-[#4372ac]"></div>
-                        </div>
-                        <h3 className="text-3xl md:text-4xl font-bold text-[#133866] mb-4">Our Services</h3>
+            <Services />
 
-                        {/* CHANGED: Branding sentence */}
-                        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                            At CLE FREIGHT LLC, <span className="text-[#4372ac] font-medium">we provide several transportation solutions</span> to meet your shipping and hauling needs. Choose the option that best fits your application.
-                        </p>
-
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 py-10">
-                        {servicesData.map((item, index) => (
-                            <div
-                                key={index}
-                                className="bg-gradient-to-br from-white to-[#133866]/5 p-6 md:p-8 rounded-2xl border border-[#133866]/10 hover:border-[#4372ac] hover:shadow-lg transition-all duration-300"
-                            >
-                                <h3 className="text-lg md:text-xl font-bold text-[#133866] mb-4">
-                                    {item.title}
-                                </h3>
-                                <p className="text-gray-600 text-sm md:text-base">
-                                    {item.description}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
             {/* NEW – Trust / Why Choose CLE FREIGHT Section */}
-            <section className="py-16 bg-[#f8fafc]">
-                <div className="max-w-7xl mx-auto px-4 md:px-12 lg:px-24">
-                    <div className="text-center mb-10">
-                        <div className="inline-flex items-center gap-2 mb-4">
-                            <div className="w-10 h-1 bg-[#4372ac]"></div>
-                            <span className="text-[#4372ac] font-medium tracking-wider">WHY CHOOSE CLE FREIGHT</span>
-                            <div className="w-10 h-1 bg-[#4372ac]"></div>
-                        </div>
-                        <h3 className="text-3xl md:text-4xl font-bold text-[#133866]">Why Choose Us?</h3>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {trustReasons.map((reason, i) => (
-                            <div
-                                key={i}
-                                className="flex items-start gap-4 bg-white rounded-xl p-6 border border-[#133866]/10 shadow-sm"
-                            >
-                                <span className="flex-shrink-0 w-10 h-10 rounded-full bg-[#4372ac]/10 flex items-center justify-center">
-                                    <svg className="w-6 h-6 text-[#4372ac]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </span>
-                                <p className="text-gray-700 font-medium">{reason}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <WhyChoose />
             {/* Shippers Section */}
             <section className="relative py-16 md:py-24 bg-[#0b1f3a] overflow-hidden">
 
@@ -321,7 +234,7 @@ const Home = () => {
                                 </div>
 
                                 <a
-                                    href="/contact"
+                                    href="/quote"
                                     className="mt-8 block w-full text-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-4 rounded-xl transition duration-300"
                                 >
                                     Get My Quote
@@ -478,30 +391,9 @@ const Home = () => {
 
                 </div>
             </section>
-            <section className="py-16 bg-white">
-                <div className="max-w-7xl mx-auto px-4 md:px-12 lg:px-24">
-                    <div className="text-center mb-10">
-                        <div className="inline-flex items-center gap-2 mb-4">
-                            <div className="w-10 h-1 bg-[#4372ac]"></div>
-                            <span className="text-[#4372ac] font-medium tracking-wider">TESTIMONIALS</span>
-                            <div className="w-10 h-1 bg-[#4372ac]"></div>
-                        </div>
-                        <h3 className="text-3xl md:text-4xl font-bold text-[#133866]">What our partners say</h3>
-                    </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="bg-gradient-to-br from-white to-[#133866]/5 p-6 md:p-8 rounded-2xl border border-[#133866]/10 shadow-sm">
-                            <div className="text-2xl">⭐</div>
-                            <p className="mt-3 text-gray-700 text-lg">“Professional communication and smooth delivery.”</p>
-                        </div>
-                        <div className="bg-gradient-to-br from-white to-[#133866]/5 p-6 md:p-8 rounded-2xl border border-[#133866]/10 shadow-sm">
-                            <div className="text-2xl">⭐</div>
-                            <p className="mt-3 text-gray-700 text-lg">“Reliable brokerage partner with great service.”</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
+            {/* Testmonial  sectional*/}
+            <Testimonal />
 
 
         </div>
@@ -543,29 +435,3 @@ const carrierBenefits = [
 export default Home
 
 
-{
-    {/* NEW: Testimonials Section (Later but Powerful) */ }
-    <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 md:px-12 lg:px-24">
-            <div className="text-center mb-10">
-                <div className="inline-flex items-center gap-2 mb-4">
-                    <div className="w-10 h-1 bg-[#4372ac]"></div>
-                    <span className="text-[#4372ac] font-medium tracking-wider">TESTIMONIALS</span>
-                    <div className="w-10 h-1 bg-[#4372ac]"></div>
-                </div>
-                <h3 className="text-3xl md:text-4xl font-bold text-[#133866]">What our partners say</h3>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gradient-to-br from-white to-[#133866]/5 p-6 md:p-8 rounded-2xl border border-[#133866]/10 shadow-sm">
-                    <div className="text-2xl">⭐</div>
-                    <p className="mt-3 text-gray-700 text-lg">“Professional communication and smooth delivery.”</p>
-                </div>
-                <div className="bg-gradient-to-br from-white to-[#133866]/5 p-6 md:p-8 rounded-2xl border border-[#133866]/10 shadow-sm">
-                    <div className="text-2xl">⭐</div>
-                    <p className="mt-3 text-gray-700 text-lg">“Reliable brokerage partner with great service.”</p>
-                </div>
-            </div>
-        </div>
-    </section>
-}

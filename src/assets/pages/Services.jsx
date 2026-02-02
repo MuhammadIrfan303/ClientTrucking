@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import ServicesSection from "../components/layoutsections/Services";
+
 const Services = () => {
     const coreServices = [
         {
@@ -97,7 +100,7 @@ const Services = () => {
             >
                 <div className="absolute inset-0 bg-gradient-to-r from-[#133866]/90 via-[#133866]/80 to-transparent" />
                 <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-10" />
-                
+
                 <div className="relative z-10 max-w-3xl text-left text-white px-6 md:px-12 py-16 md:py-24">
                     <div className="max-w-4xl mx-auto text-center md:text-left w-full">
                         <div className="inline-flex items-center gap-3 mb-6 mx-auto md:mx-0">
@@ -107,23 +110,23 @@ const Services = () => {
                             </span>
                             <div className="w-10 h-1 bg-[#4372ac] rounded-full"></div>
                         </div>
-                        
+
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
                             Professional
                             <span className="block text-[#4372ac]">Freight Services</span>
                         </h1>
-                        
+
                         <p className="mt-6 text-lg md:text-xl text-white/90 max-w-2xl mx-auto md:mx-0">
                             Comprehensive logistics solutions designed to move your freight efficiently, safely, and reliably across all 48 states.
                         </p>
-                        
+
                         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                            <button className="bg-[#4372ac] hover:bg-[#3a6399] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                            <Link to='/quote' className="bg-[#4372ac] hover:bg-[#3a6399] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
                                 Get Instant Quote
-                            </button>
-                            <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:bg-white/10">
+                            </Link>
+                            <Link to='/contact' className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:bg-white/10">
                                 Contact Our Team
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -137,8 +140,8 @@ const Services = () => {
                             Comprehensive Freight Solutions
                         </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                            CLE FREIGHT LLC provides end-to-end logistics services that streamline your supply chain. 
-                            Whether you're shipping temperature-sensitive pharmaceuticals, general merchandise, or oversized equipment, 
+                            CLE FREIGHT LLC provides end-to-end logistics services that streamline your supply chain.
+                            Whether you're shipping temperature-sensitive pharmaceuticals, general merchandise, or oversized equipment,
                             our experienced team ensures your freight reaches its destination safely, on time, and within budget.
                         </p>
                     </div>
@@ -159,47 +162,10 @@ const Services = () => {
                     </div>
                 </div>
             </section>
+ 
+            <ServicesSection />
 
-            {/* Core Services Section */}
-            <section className="py-12 md:py-20 bg-gradient-to-b from-white to-[#133866]/5">
-                <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16">
-                    <div className="text-center mb-16">
-                        <div className="inline-flex items-center gap-3 mb-4">
-                            <div className="w-10 h-1 bg-[#4372ac] rounded-full"></div>
-                            <span className="text-[#4372ac] font-medium tracking-widest text-sm uppercase">
-                                What We Offer
-                            </span>
-                            <div className="w-10 h-1 bg-[#4372ac] rounded-full"></div>
-                        </div>
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#133866] mb-6">
-                            Our Core Services
-                        </h2>
-                        <p className="text-gray-600 max-w-2xl mx-auto">
-                            Specialized transportation solutions tailored to your specific needs
-                        </p>
-                    </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 py-10">
-                        {servicesData.map((item, index) => (
-                            <div
-                                key={index}
-                                className="bg-gradient-to-br from-white to-[#133866]/5 p-6 md:p-8 rounded-2xl border border-[#133866]/10 hover:border-[#4372ac] hover:shadow-lg transition-all duration-300"
-                            >
-                                <h3 className="text-lg md:text-xl font-bold text-[#133866] mb-4">
-                                    {item.title}
-                                </h3>
-                                <p className="text-gray-600 text-sm md:text-base">
-                                    {item.description}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-
-                    
-                </div>
-            </section>
-
-          
         </div>
     );
 }
