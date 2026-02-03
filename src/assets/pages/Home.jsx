@@ -233,12 +233,12 @@ const Home = () => {
                                     </div>
                                 </div>
 
-                                <a
-                                    href="/quote"
+                                <Link
+                                    to="/quote"
                                     className="mt-8 block w-full text-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-4 rounded-xl transition duration-300"
                                 >
                                     Get My Quote
-                                </a>
+                                </Link>
                             </div>
                         </div>
 
