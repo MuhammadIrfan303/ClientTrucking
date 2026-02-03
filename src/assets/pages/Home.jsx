@@ -364,8 +364,8 @@ const Home = () => {
 
 
                         {/* NEW: Direct link to Carrier Setup page */}
-                        <a
-                            href="/carrier"
+                        <Link
+                            to="/carrier"
                             className="ml-4 inline-flex items-center gap-3 bg-[#4372ac] hover:bg-[#3a6399] text-white font-bold text-lg px-10 py-5 rounded-2xl transition"
                         >
                             Carrier Partners
@@ -382,7 +382,7 @@ const Home = () => {
                                     d="M13 7l5 5m0 0l-5 5m5-5H6"
                                 />
                             </svg>
-                        </a>
+                        </Link>
 
                         <p className="mt-4 text-gray-400 text-sm">
                             Owner-operators • Small fleets • Nationwide freight
