@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import { FaTruck, FaMapMarkerAlt, FaCalendarAlt, FaPhone, FaEnvelope, FaWeightHanging, FaBox, FaCheckCircle } from 'react-icons/fa';
+import { toast, ToastContainer } from 'react-toastify'
+import {db} from '../../firebase'
+import { addDoc, collection, Timestamp } from 'firebase/firestore';
+
 
 const Quote = () => {
-    const [form, setForm] = useState({
+    const initialForm = {
         firstName: '',
         lastName: '',
         company: '',
@@ -17,8 +21,10 @@ const Quote = () => {
         commodity: '',
         pickupDate: '',
         specialInstructions: ''
-    });
+    };
 
+    const [form, setForm] = useState(initialForm);
+    const [recentEmail, setRecentEmail] = useState('');
     const [loading, setLoading] = useState(false);
     const [submitted, setSubmitted] = useState(false);
 
@@ -27,62 +33,30 @@ const Quote = () => {
         setForm((prev) => ({ ...prev, [name]: value }));
     };
 
+    // REPLACE: mailto submission with Firestore write
+    // UPDATED: use Firebase Callable Cloud Function instead of direct Firestore write
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
 
-        // Create email body
-        const emailBody = `
-New Quote Request from CLE FREIGHT Website:
+        try {
+            setLoading(true);
 
-CONTACT INFORMATION:
-• Name: ${form.firstName} ${form.lastName}
-• Company: ${form.company || 'Not provided'}
-• Email: ${form.email}
-• Phone: ${form.phone}
+            await addDoc(collection(db, "quotes"), {
+                ...form,
+                createdAt:Timestamp.now(),
 
-SHIPMENT DETAILS:
-• Pickup: ${form.pickupCity}, ${form.pickupState}
-• Delivery: ${form.deliveryCity}, ${form.deliveryState}
-• Trailer Type: ${form.trailerType}
-• Weight: ${form.weight} lbs
-• Commodity: ${form.commodity}
-• Pickup Date: ${form.pickupDate}
+            });
 
-ADDITIONAL NOTES:
-${form.specialInstructions || 'None'}
-        `.trim();
+            toast.success("Data saved successfully!")
 
-        // Send email using mailto link
-        const mailtoLink = `mailto:clefreight@outlook.com?subject=New Freight Quote Request - ${form.firstName} ${form.lastName}&body=${encodeURIComponent(emailBody)}`;
-
-        // Simulate API call delay
-        setTimeout(() => {
-            window.location.href = mailtoLink;
-            setLoading(false);
             setSubmitted(true);
-
-            // Reset form after submission
-            setTimeout(() => {
-                setForm({
-                    firstName: '',
-                    lastName: '',
-                    company: '',
-                    email: '',
-                    phone: '',
-                    pickupCity: '',
-                    pickupState: '',
-                    deliveryCity: '',
-                    deliveryState: '',
-                    trailerType: 'dry-van',
-                    weight: '',
-                    commodity: '',
-                    pickupDate: '',
-                    specialInstructions: ''
-                });
-                setSubmitted(false);
-            }, 5000);
-        }, 1000);
+            setForm(initialForm);
+        } catch (error) {
+            console.error("Error saving quote:", error);
+            toast.error("Something went wrong. Please try again.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     const states = [
@@ -104,6 +78,7 @@ ${form.specialInstructions || 'None'}
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+            <ToastContainer />
             {/* Hero Section - Using Contact Page Color Scheme */}
             <section
                 className="relative w-full min-h-[400px] rounded-sm overflow-hidden bg-cover bg-center mt-6"
@@ -149,11 +124,17 @@ ${form.specialInstructions || 'None'}
                                 </svg>
                             </div>
                             <h2 className="text-3xl font-bold text-gray-900 mb-4">Quote Request Sent!</h2>
+                            {/* UPDATED: Success message to reflect Firebase submission */}
                             <p className="text-gray-600 mb-6">
-                                Thank you for your request. We've opened your email client to send your quote details to <strong className="text-[#133866]">clefreight@outlook.com</strong>.
+                                Thank you for your request. We have received your details and will email your quote to
+                                {' '}
+                                <strong className="text-[#133866]">{recentEmail || 'the address you provided'}</strong> within 1-2 business hours.
                             </p>
                             <p className="text-gray-600 mb-8">
-                                If the email didn't open automatically, please email us directly at <a href="mailto:clefreight@outlook.com" className="text-[#4372ac] hover:text-[#133866] font-semibold">clefreight@outlook.com</a>.
+                                For immediate assistance, email us at
+                                {' '}
+                                <a href="mailto:clefreight@outlook.com" className="text-[#4372ac] hover:text-[#133866] font-semibold">clefreight@outlook.com</a>
+                                {' '}or call us directly.
                             </p>
                             <button
                                 onClick={() => setSubmitted(false)}

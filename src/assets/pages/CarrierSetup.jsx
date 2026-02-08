@@ -1,28 +1,37 @@
 import React, { useState } from "react";
-import { 
-  FaTruck, 
-  FaFilePdf, 
-  FaUpload, 
-  FaCheckCircle, 
-  FaShieldAlt, 
-  FaUsers, 
-  FaPhone, 
-  FaEnvelope,
-  FaArrowRight,
-  FaClipboardCheck,
-  FaFileContract,
-  FaHandshake,
-  FaChartLine,
-  FaBolt,
-  FaMapMarkerAlt,
-  FaCalendarCheck
+import {
+    FaTruck,
+    FaFilePdf,
+    FaUpload,
+    FaCheckCircle,
+    FaShieldAlt,
+    FaUsers,
+    FaPhone,
+    FaEnvelope,
+    FaArrowRight,
+    FaClipboardCheck,
+    FaFileContract,
+    FaHandshake,
+    FaChartLine,
+    FaBolt,
+    FaMapMarkerAlt,
+    FaCalendarCheck
 } from "react-icons/fa";
 
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { db, storage } from "../../firebase"; // adjust path
+
+import { uploadBytesResumable } from "firebase/storage";
+import { toast, ToastContainer } from "react-toastify";
 function CarrierSetup() {
     const CONTACT_EMAIL = "clefreight@outlook.com";
-    18624173188
-	 
-    
+    const CONTACT_PHONE = "18624173188";
+
+    const [uploading, setUploading] = useState(false);
+    const [uploadText, setUploadText] = useState("");
+
+
     const [form, setForm] = useState({
         companyName: "",
         mcNumber: "",
@@ -50,6 +59,8 @@ function CarrierSetup() {
     const [submitting, setSubmitting] = useState(false);
     const [activeStep, setActiveStep] = useState(1);
 
+
+
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         if (name in form.equipment) {
@@ -63,6 +74,7 @@ function CarrierSetup() {
             setForm((prev) => ({ ...prev, [name]: value }));
         }
     };
+
 
     const handleFileChange = (e) => {
         const { name, files: selectedFiles } = e.target;
@@ -96,6 +108,42 @@ function CarrierSetup() {
         return "";
     };
 
+
+
+    const uploadFile = (file, folder, label) => {
+        return new Promise((resolve, reject) => {
+            const fileRef = ref(
+                storage,
+                `carriers/${folder}/${Date.now()}_${file.name}`
+            );
+
+            const uploadTask = uploadBytesResumable(fileRef, file);
+
+            setUploading(true);
+            setUploadText(`Uploading ${label}...`);
+
+            uploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                    const progress = Math.round(
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    );
+                    setUploadText(`Uploading ${label}... ${progress}%`);
+                },
+                (error) => {
+                    setUploading(false);
+                    reject(error);
+                },
+                async () => {
+                    const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                    resolve(downloadURL);
+                }
+            );
+        });
+    };
+
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus({ type: "", message: "" });
@@ -107,14 +155,44 @@ function CarrierSetup() {
         }
 
         setSubmitting(true);
+
         try {
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            
-            setStatus({ 
-                type: "success", 
-                message: "Application submitted successfully! Our carrier relations team will contact you within 24 hours." 
+            setSubmitting(true);
+
+            const w9Url = await uploadFile(files.w9, "w9", "W-9 Document");
+            const insuranceUrl = await uploadFile(
+                files.insurance,
+                "insurance",
+                "Insurance Certificate"
+            );
+
+            setUploading(false);
+
+
+            // 2️⃣ Save form data in Firestore
+            await addDoc(collection(db, "carriers"), {
+                companyName: form.companyName,
+                mcNumber: form.mcNumber,
+                dotNumber: form.dotNumber,
+                contactName: form.contactName,
+                email: form.email,
+                phone: form.phone,
+                equipment: form.equipment,
+                lanes: form.lanes,
+                documents: {
+                    w9: w9Url,
+                    insurance: insuranceUrl,
+                },
+                status: "pending",
+                createdAt: serverTimestamp(),
             });
-            
+
+
+            toast.success("Application submitted successfully! Our carrier relations team will contact you within 24 hours.")
+
+
+
+            // Reset form
             setForm({
                 companyName: "",
                 mcNumber: "",
@@ -122,25 +200,33 @@ function CarrierSetup() {
                 contactName: "",
                 email: "",
                 phone: "",
-                equipment: { dryVan: false, reefer: false, flatbed: false, stepDeck: false, other: false },
+                equipment: {
+                    dryVan: false,
+                    reefer: false,
+                    flatbed: false,
+                    stepDeck: false,
+                    other: false,
+                },
                 lanes: "",
                 agree: false,
             });
+
             setFiles({ w9: null, insurance: null });
             setActiveStep(1);
-            
+
         } catch (error) {
-            setStatus({ 
-                type: "error", 
-                message: "Submission failed. Please try again or contact us directly." 
-            });
+            console.error(error);
+            toast.error("Submission failed. Please try again.")
+                ;
         } finally {
             setSubmitting(false);
         }
     };
 
+
     return (
         <div className="min-h-screen bg-gray-50">
+            <ToastContainer />
             {/* Hero Section - Matching Requested Style */}
             <section
                 className="relative w-full min-h-[400px] rounded-sm overflow-hidden bg-cover bg-center mt-6"
@@ -156,18 +242,18 @@ function CarrierSetup() {
                         Carrier <span className="text-[#4372ac]">Onboarding</span>
                     </h1>
                     <p className="mt-6 text-lg md:text-xl text-gray-100 max-w-2xl leading-relaxed">
-                        Join CLE Freight's trusted network of carrier partners. Access consistent freight, competitive rates, 
+                        Join CLE Freight's trusted network of carrier partners. Access consistent freight, competitive rates,
                         and dedicated support in a partnership built on reliability and mutual success.
                     </p>
                     <div className="flex flex-wrap gap-4 mt-8">
-                        <a 
-                            href="#form" 
+                        <a
+                            href="#form"
                             className="bg-[#4372ac] hover:bg-[#3a6399] text-white px-8 py-3 rounded-xl font-semibold text-lg transition duration-300"
                         >
                             Start Application
                         </a>
-                        <a 
-                            href="#benefits" 
+                        <a
+                            href="#benefits"
                             className="border-2 border-white hover:bg-white hover:text-gray-900 text-white px-8 py-3 rounded-xl font-semibold text-lg transition duration-300"
                         >
                             View Benefits
@@ -200,7 +286,7 @@ function CarrierSetup() {
             <section className="py-16 px-6 md:px-12">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid lg:grid-cols-3 gap-8">
-                        
+
                         {/* Left Column - Form */}
                         <div className="lg:col-span-2">
                             <div className="bg-white rounded-2xl shadow-lg border border-gray-200">
@@ -218,17 +304,11 @@ function CarrierSetup() {
                                 </div>
 
                                 {/* Progress Steps */}
-                                
+
 
                                 {/* Form Body */}
                                 <div className="p-8">
-                                    {status.message && (
-                                        <div className={`mb-6 p-4 rounded-lg ${status.type === "success" ? "bg-green-50 border border-green-200" : "bg-red-50 border border-red-200"}`}>
-                                            <p className={status.type === "success" ? "text-green-700" : "text-red-700"}>
-                                                {status.message}bfjsd
-                                            </p>
-                                        </div>
-                                    )}
+                                  
 
                                     <form onSubmit={handleSubmit} className="space-y-8">
                                         {/* Company Information */}
@@ -250,7 +330,7 @@ function CarrierSetup() {
                                                         onFocus={() => setActiveStep(1)}
                                                     />
                                                 </div>
-                                                
+
                                                 <div>
                                                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                                                         MC Number
@@ -264,7 +344,7 @@ function CarrierSetup() {
                                                         placeholder="Enter MC number"
                                                     />
                                                 </div>
-                                                
+
                                                 <div>
                                                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                                                         DOT Number
@@ -278,7 +358,7 @@ function CarrierSetup() {
                                                         placeholder="Enter DOT number"
                                                     />
                                                 </div>
-                                                
+
                                                 <div>
                                                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                                                         Contact Name <span className="text-red-500">*</span>
@@ -293,7 +373,7 @@ function CarrierSetup() {
                                                         placeholder="Enter contact name"
                                                     />
                                                 </div>
-                                                
+
                                                 <div>
                                                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                                                         Email Address <span className="text-red-500">*</span>
@@ -308,7 +388,7 @@ function CarrierSetup() {
                                                         placeholder="Enter email address"
                                                     />
                                                 </div>
-                                                
+
                                                 <div>
                                                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                                                         Phone Number
@@ -328,15 +408,15 @@ function CarrierSetup() {
                                         {/* Equipment & Lanes */}
                                         <div className="space-y-6">
                                             <h3 className="text-xl font-bold text-gray-900 border-l-4 border-blue-600 pl-4">Equipment & Lanes</h3>
-                                            
+
                                             <div>
                                                 <label className="block text-sm font-semibold text-gray-700 mb-3">
                                                     Equipment Types
                                                 </label>
                                                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                                                     {Object.entries(form.equipment).map(([key, value]) => (
-                                                        <label 
-                                                            key={key} 
+                                                        <label
+                                                            key={key}
                                                             className={`flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition ${value ? 'border-blue-500 bg-blue-50' : 'border-gray-300'}`}
                                                         >
                                                             <input
@@ -354,7 +434,7 @@ function CarrierSetup() {
                                                     ))}
                                                 </div>
                                             </div>
-                                            
+
                                             <div>
                                                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                                                     Preferred Lanes / Notes
@@ -373,7 +453,7 @@ function CarrierSetup() {
                                         {/* Documents Upload */}
                                         <div className="space-y-6">
                                             <h3 className="text-xl font-bold text-gray-900 border-l-4 border-blue-600 pl-4">Required Documents</h3>
-                                            
+
                                             <div className="grid md:grid-cols-2 gap-6">
                                                 <div>
                                                     <label className="block text-sm font-semibold text-gray-700 mb-3">
@@ -401,7 +481,7 @@ function CarrierSetup() {
                                                         </label>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div>
                                                     <label className="block text-sm font-semibold text-gray-700 mb-3">
                                                         Insurance Certificate <span className="text-red-500">*</span>
@@ -445,29 +525,28 @@ function CarrierSetup() {
                                                         Terms & Agreement
                                                     </label>
                                                     <p className="text-sm text-gray-600">
-                                                        I confirm that all information provided is accurate and complete. I agree to the 
-                                                        onboarding terms and understand that CLE Freight will verify all submitted documents 
+                                                        I confirm that all information provided is accurate and complete. I agree to the
+                                                        onboarding terms and understand that CLE Freight will verify all submitted documents
                                                         before approval.
                                                     </p>
                                                 </div>
                                             </div>
                                         </div>
+                                        {uploading && (
+                                            <div className="flex items-center gap-3 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                                                <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                                                <span className="text-blue-700 font-medium">{uploadText}</span>
+                                            </div>
+                                        )}
 
-                                        {/* Submit Button */}
                                         <button
                                             type="submit"
-                                            disabled={submitting}
+                                            disabled={submitting || uploading}
                                             className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-bold text-lg transition disabled:opacity-60 disabled:cursor-not-allowed"
                                         >
-                                            {submitting ? (
-                                                <span className="flex items-center justify-center gap-2">
-                                                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                                                    Processing...
-                                                </span>
-                                            ) : (
-                                                "Submit Application"
-                                            )}
+                                            {submitting || uploading ? "Uploading..." : "Submit Application"}
                                         </button>
+
                                     </form>
                                 </div>
                             </div>
@@ -510,9 +589,9 @@ function CarrierSetup() {
                                 <p className="text-blue-100 mb-6">
                                     Questions about the onboarding process? Our carrier relations team is here to help.
                                 </p>
-                                
+
                                 <div className="space-y-4">
-                                    <a 
+                                    <a
                                         href={`mailto:${CONTACT_EMAIL}`}
                                         className="flex items-center gap-3 p-3 bg-white/10 rounded-xl hover:bg-white/20 transition"
                                     >
@@ -522,8 +601,8 @@ function CarrierSetup() {
                                             <div className="text-sm text-blue-200">Email Support</div>
                                         </div>
                                     </a>
-                                    
-                                    <a 
+
+                                    <a
                                         href="tel:5551234567"
                                         className="flex items-center gap-3 p-3 bg-white/10 rounded-xl hover:bg-white/20 transition"
                                     >
