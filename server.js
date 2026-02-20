@@ -10,10 +10,12 @@ app.use(express.json());
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.NEXT_AUTHUSER,
-    pass: process.env.NEXT_AUTHPASS,
+    user: "mmananan779@gmail.com",
+    pass: "xfzy njbf cahr hsgb",
   }
 });
+
+
 
 app.post('/api/send-email', async (req, res) => {
   try {
