@@ -24,6 +24,7 @@ import { db, storage } from "../../firebase"; // adjust path
 
 import { uploadBytesResumable } from "firebase/storage";
 import { toast, ToastContainer } from "react-toastify";
+import EmailSender from "../components/EmailSender";
 function CarrierSetup() {
     const CONTACT_EMAIL = "clefreight@outlook.com";
     const CONTACT_PHONE = "18624173188";
@@ -188,7 +189,31 @@ function CarrierSetup() {
             });
 
 
+
+
             toast.success("Application submitted successfully! Our carrier relations team will contact you within 24 hours.")
+
+            await EmailSender({
+                to: "webwithirfan@gmail.com",
+                type: "carrier",
+                subject: "New Freight Carrier Request – CLE FREIGHT LLC",
+                recipientName: {
+                    companyName: form.companyName,
+                    contactName: form.contactName,
+                    mcNumber: form.mcNumber,
+                    dotNumber: form.dotNumber,
+                    email: form.email,
+                    phone: form.phone,
+                    equipment: form.equipment,
+                    lanes: form.lanes,
+                    documents: {
+                        w9: w9Url,
+                        insurance: insuranceUrl,
+                    },
+
+                },
+                htmlContent: `<p>Please review and respond within 1–2 business hours.</p>`
+            });
 
 
 
@@ -308,7 +333,7 @@ function CarrierSetup() {
 
                                 {/* Form Body */}
                                 <div className="p-8">
-                                  
+
 
                                     <form onSubmit={handleSubmit} className="space-y-8">
                                         {/* Company Information */}
@@ -336,7 +361,7 @@ function CarrierSetup() {
                                                         MC Number
                                                     </label>
                                                     <input
-                                                        type="text"
+                                                        type="number"
                                                         name="mcNumber"
                                                         value={form.mcNumber}
                                                         onChange={handleChange}
@@ -350,7 +375,7 @@ function CarrierSetup() {
                                                         DOT Number
                                                     </label>
                                                     <input
-                                                        type="text"
+                                                        type="number"
                                                         name="dotNumber"
                                                         value={form.dotNumber}
                                                         onChange={handleChange}
@@ -364,7 +389,7 @@ function CarrierSetup() {
                                                         Contact Name <span className="text-red-500">*</span>
                                                     </label>
                                                     <input
-                                                        type="text"
+                                                        type="tel"
                                                         name="contactName"
                                                         value={form.contactName}
                                                         onChange={handleChange}
@@ -542,7 +567,7 @@ function CarrierSetup() {
                                         <button
                                             type="submit"
                                             disabled={submitting || uploading}
-                                            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-bold text-lg transition disabled:opacity-60 disabled:cursor-not-allowed"
+                                            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-bold text-lg transition disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                                         >
                                             {submitting || uploading ? "Uploading..." : "Submit Application"}
                                         </button>

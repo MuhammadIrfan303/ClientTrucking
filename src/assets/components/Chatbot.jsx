@@ -150,7 +150,7 @@ export default function Chatbot() {
                         {/* Header */}
                         <div className="bg-gradient-to-r from-[#133866] to-[#4372ac] px-4 py-3 text-white">
                             <div className="flex items-center justify-end">
-                               
+
                                 <button
                                     onClick={() => setIsOpen(false)}
                                     className="p-2 hover:bg-white/10 rounded-lg transition-colors cursor-pointer"
@@ -248,8 +248,8 @@ export default function Chatbot() {
                                 </button>
                             </div>
 
-                             
-                          
+
+
                         </div>
                     </div>
                 </>

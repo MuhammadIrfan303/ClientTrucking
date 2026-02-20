@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { FaTruck, FaMapMarkerAlt, FaCalendarAlt, FaPhone, FaEnvelope, FaWeightHanging, FaBox, FaCheckCircle } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify'
-import {db} from '../../firebase'
+import { db } from '../../firebase'
 import { addDoc, collection, Timestamp } from 'firebase/firestore';
+import EmailSender from '../components/EmailSender';
 
 
 const Quote = () => {
@@ -41,23 +42,43 @@ const Quote = () => {
         try {
             setLoading(true);
 
+            // 1. Save to Firestore
             await addDoc(collection(db, "quotes"), {
                 ...form,
-                createdAt:Timestamp.now(),
-
+                createdAt: Timestamp.now(),
             });
 
-            toast.success("Data saved successfully!")
+            toast.success("Quote request submitted successfully!");
+
+            // 2. Send email to ADMIN
+            await EmailSender({
+                to: "webwithirfan@gmail.com",
+                subject: "New Freight Quote Request – CLE FREIGHT LLC",
+                type: "quote",
+                recipientName: {
+                    pickup: `${form.pickupCity}, ${form.pickupState}`,
+                    delivery: `${form.deliveryCity}, ${form.deliveryState}`,
+                    trailer: form.trailerType,
+                    weight: form.weight,
+                    commodity: form.commodity,
+                    pickupDate: form.pickupDate,
+                    email: form.email,
+                    phone: form.phone,
+                },
+                htmlContent: `<p>Please review and respond within 1–2 business hours.</p>`
+            });
 
             setSubmitted(true);
             setForm(initialForm);
+
         } catch (error) {
-            console.error("Error saving quote:", error);
+            console.error("Error:", error);
             toast.error("Something went wrong. Please try again.");
         } finally {
             setLoading(false);
         }
     };
+
 
     const states = [
         'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
@@ -393,7 +414,7 @@ const Quote = () => {
                                     <button
                                         type="submit"
                                         disabled={loading}
-                                        className="w-full bg-gradient-to-r from-[#133866] to-[#4372ac] hover:from-[#0d2b4d] hover:to-[#133866] text-white font-bold py-4 px-6 rounded-lg text-lg transition duration-300 shadow-lg hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed"
+                                        className="w-full bg-gradient-to-r from-[#133866] to-[#4372ac] hover:from-[#0d2b4d] hover:to-[#133866] text-white font-bold py-4 px-6 rounded-lg text-lg transition duration-300 shadow-lg hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
                                     >
                                         {loading ? (
                                             <span className="flex items-center justify-center">
