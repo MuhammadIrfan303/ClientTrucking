@@ -194,7 +194,7 @@ function CarrierSetup() {
             toast.success("Application submitted successfully! Our carrier relations team will contact you within 24 hours.")
 
             await EmailSender({
-                to: "webwithirfan@gmail.com",
+                to: import.meta.env.VITE_RECIPIENT_EMAIL,
                 type: "carrier",
                 subject: "New Freight Carrier Request – CLE FREIGHT LLC",
                 recipientName: {

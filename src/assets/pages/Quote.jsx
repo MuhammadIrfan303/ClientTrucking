@@ -52,7 +52,7 @@ const Quote = () => {
 
             // 2. Send email to ADMIN
             await EmailSender({
-                to: "webwithirfan@gmail.com",
+                to: import.meta.env.VITE_RECIPIENT_EMAIL,
                 subject: "New Freight Quote Request – CLE FREIGHT LLC",
                 type: "quote",
                 recipientName: {
@@ -159,7 +159,7 @@ const Quote = () => {
                             </p>
                             <button
                                 onClick={() => setSubmitted(false)}
-                                className="bg-[#133866] hover:bg-[#0d2b4d] text-white font-semibold py-3 px-8 rounded-lg transition duration-300"
+                                className="bg-[#133866] hover:bg-[#0d2b4d] text-white font-semibold py-3 px-8 rounded-lg transition duration-300 cursor-pointer"
                             >
                                 Submit Another Quote Request
                             </button>
