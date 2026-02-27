@@ -3,7 +3,7 @@ import WhyChoose from "../components/layoutsections/Whychoose";
 
 function About() {
 
-    
+
     return (
         <div className="min-h-screen bg-white">
 
@@ -19,11 +19,11 @@ function About() {
                         <span className="text-[#4372ac] font-medium tracking-wider">WHO WE ARE</span>
                     </div>
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-                        About CLE <span className="text-[#4372ac]">Freight</span>
+                        ABOUT CLE <span className="text-[#4372ac]">FREIGHT LLC</span>
+
                     </h1>
                     <p className="mt-6 text-lg md:text-xl text-gray-100 max-w-2xl leading-relaxed">
-                        CLE FREIGHT LLC is a U.S.-based freight brokerage specializing in Dry Van and Reefer transportation nationwide. Founded by Cheikh Fadel, we focus on reliable service, strong communication, and vetted carrier partnerships.
-
+                        CLE FREIGHT LLC is a fully licensed and bonded U.S.-based freight brokerage specializing in nationwide Dry Van and Reefer transportation. Founded by CHEIKH FADEL, the company was built on principles of reliability, accountability, and strategic carrier partnerships. Through a rigorously vetted carrier network and proactive communication, CLE Freight LLC ensures secure, compliant, and on-time freight movement across the United States
 
                     </p>
                 </div>
@@ -111,7 +111,7 @@ function About() {
             </section>
 
             {/* Why Choose Us */}
-            <WhyChoose/>
+            <WhyChoose />
             {/* <section className="py-12 md:py-20">
                 <div className="text-center mb-12">
                     <div className="inline-flex items-center gap-2 mb-4">

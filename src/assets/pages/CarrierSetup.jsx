@@ -54,6 +54,7 @@ function CarrierSetup() {
     const [files, setFiles] = useState({
         w9: null,
         insurance: null,
+        mcathority: null
     });
 
     const [status, setStatus] = useState({ type: "", message: "" });
@@ -103,6 +104,10 @@ function CarrierSetup() {
         if (!files.insurance) {
             return "Please upload your Insurance certificate.";
         }
+        if (!files.mcathority) {
+            return "Please upload your MCAuthority certificate.";
+        }
+
         if (!form.agree) {
             return "Please confirm and accept the onboarding terms.";
         }
@@ -165,7 +170,16 @@ function CarrierSetup() {
                 files.insurance,
                 "insurance",
                 "Insurance Certificate"
+
+
             );
+            const mcathorityUrl = await uploadFile(
+                files.mcathority,
+                "mcathority",
+                "MCAuthority Certificate"
+            );
+
+
 
             setUploading(false);
 
@@ -183,6 +197,7 @@ function CarrierSetup() {
                 documents: {
                     w9: w9Url,
                     insurance: insuranceUrl,
+                    mcathority: mcathorityUrl,
                 },
                 status: "pending",
                 createdAt: serverTimestamp(),
@@ -209,6 +224,7 @@ function CarrierSetup() {
                     documents: {
                         w9: w9Url,
                         insurance: insuranceUrl,
+                        mcathority: mcathorityUrl,
                     },
 
                 },
@@ -236,7 +252,7 @@ function CarrierSetup() {
                 agree: false,
             });
 
-            setFiles({ w9: null, insurance: null });
+            setFiles({ w9: null, insurance: null, mcathority: null });
             setActiveStep(1);
 
         } catch (error) {
@@ -532,6 +548,32 @@ function CarrierSetup() {
                                                         </label>
                                                     </div>
                                                 </div>
+
+                                                <div>
+                                                    <label className="block text-sm font-semibold text-gray-700 mb-3">
+                                                        MCAuthority Certificate <span className="text-red-500">*</span>
+                                                    </label>
+                                                    <div className={`border-2 border-dashed rounded-xl p-6 text-center transition ${files.mcathority ? 'border-green-500 bg-green-50' : 'border-gray-300 hover:border-blue-400'}`}>
+                                                        <FaShieldAlt className="text-3xl text-gray-400 mx-auto mb-3" />
+                                                        <p className="text-sm text-gray-600 mb-2">
+                                                            {files.mcathority ? files.mcathority.name : "Upload MCAuthority Certificate"}
+                                                        </p>
+                                                        <p className="text-xs text-gray-500 mb-4">PDF, JPG, or PNG (Max 10MB)</p>
+                                                        <label className="cursor-pointer">
+                                                            <span className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium text-sm hover:bg-blue-700 transition">
+                                                                Choose File
+                                                            </span>
+                                                            <input
+                                                                type="file"
+                                                                name="mcathority"
+                                                                accept=".pdf,.jpg,.jpeg,.png"
+                                                                className="hidden"
+                                                                onChange={handleFileChange}
+                                                                required
+                                                            />
+                                                        </label>
+                                                    </div>
+                                                </div> {/* Changed from <div/> to </div> */}
                                             </div>
                                         </div>
 
@@ -543,7 +585,7 @@ function CarrierSetup() {
                                                     name="agree"
                                                     checked={form.agree}
                                                     onChange={handleChange}
-                                                    className="w-5 h-5 mt-1 text-blue-600 rounded focus:ring-blue-500"
+                                                    className="w-5 h-5 mt-1 text-blue-600 rounded focus:ring-blue-500 cursor-pointer"
                                                 />
                                                 <div>
                                                     <label className="font-semibold text-gray-800 mb-1 block">

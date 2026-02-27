@@ -33,16 +33,18 @@ const Home = () => {
                         <div className="max-w-2xl">
                             {/* Decorative element */}
                             <div className="flex items-center gap-3 mb-6">
-                                <div className="w-12 h-1 bg-[#4372ac] rounded-full"></div>
+                                <div className="w-8 h-1 bg-[#4372ac] rounded-full"></div>
                                 <span className="text-[#4372ac] font-medium tracking-widest text-sm uppercase">
-                                    Nationwide Coverage
+                                    Nationwide Freight Brokerage
                                 </span>
                             </div>
 
                             {/* Main headline with impact */}
-                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+                            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
                                 <span className="block">CLE FREIGHT LLC</span>
-                                <span className="block text-[#4372ac]">TRANSPORT</span>
+                                <span className="block text-[#4372ac]">
+                                    Nationwide Freight Brokerage Services
+                                </span>
                             </h1>
 
                             {/* Subtitle */}
@@ -73,13 +75,13 @@ const Home = () => {
                                         <div className="text-sm text-white/80">Support</div>
                                     </div>
                                 </div>
-                                <div className="flex items-center gap-3">
+                                {/* <div className="flex items-center gap-3">
                                     <div className="w-2 h-8 bg-[#4372ac] rounded-full"></div>
                                     <div>
-                                        <div className="text-2xl font-bold text-white">98%</div>
-                                        <div className="text-sm text-white/80">On-Time Rate</div>
+                                        <div className="text-2xl font-bold text-white">Licensed</div>
+                                        <div className="text-sm text-white/80">FMCSA Broker</div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
 
                             {/* CTA Buttons */}
@@ -88,7 +90,7 @@ const Home = () => {
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                     </svg>
-                                    Request a Free Quote
+                                    Get Your Rate in 30 Minutes
                                 </Link>
 
 
@@ -164,6 +166,50 @@ const Home = () => {
 
             {/* Services Section */}
             <Services />
+
+            <section className="bg-white">
+                <div className="px-4 md:px-12 lg:px-24">
+                    <div className="text-center mb-12">
+                        {/* Header with decorative lines */}
+                        <div className="inline-flex items-center gap-2 mb-4">
+                            <div className="w-10 h-1 bg-[#4372ac]"></div>
+                            <span className="text-[#4372ac] font-medium tracking-wider">VETTED CARRIER NETWORK</span>
+                            <div className="w-10 h-1 bg-[#4372ac]"></div>
+                        </div>
+
+                        <h3 className="text-3xl md:text-4xl font-bold text-[#133866] mb-4">Our Vetted Carrier Network</h3>
+
+                        <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                            CLE FREIGHT LLC partners exclusively with carefully screened and compliant motor carriers.
+                            Each carrier is verified for active FMCSA authority, required insurance coverage,
+                            and safety standards before handling any shipment.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 py-10">
+                        <div className="bg-gradient-to-br from-white to-[#133866]/5 p-6 md:p-8 rounded-2xl border border-[#133866]/10 hover:border-[#4372ac] hover:shadow-lg transition-all duration-300">
+                            <h4 className="text-lg md:text-xl font-bold text-[#133866] mb-2">FMCSA Authority Verified</h4>
+                            <p className="text-gray-600 text-sm md:text-base">
+                                Active operating authority and safety compliance confirmed.
+                            </p>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-white to-[#133866]/5 p-6 md:p-8 rounded-2xl border border-[#133866]/10 hover:border-[#4372ac] hover:shadow-lg transition-all duration-300">
+                            <h4 className="text-lg md:text-xl font-bold text-[#133866] mb-2">Insurance Confirmed</h4>
+                            <p className="text-gray-600 text-sm md:text-base">
+                                Minimum $1,000,000 Auto Liability and $100,000 Cargo Insurance required.
+                            </p>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-white to-[#133866]/5 p-6 md:p-8 rounded-2xl border border-[#133866]/10 hover:border-[#4372ac] hover:shadow-lg transition-all duration-300">
+                            <h4 className="text-lg md:text-xl font-bold text-[#133866] mb-2">Ongoing Performance Review</h4>
+                            <p className="text-gray-600 text-sm md:text-base">
+                                Continuous monitoring to ensure reliability and on-time service.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* NEW – Trust / Why Choose CLE FREIGHT Section */}
             <WhyChoose />
@@ -410,7 +456,24 @@ const Home = () => {
             </section>
 
             {/* Testmonial  sectional*/}
+            {/* Testmonial  sectional*/}
             <Testimonal />
+
+            {/* Bottom CTA Section */}
+            <section className="py-16 bg-[#4372ac] text-white text-center rounded-xl mx-4 md:mx-12 lg:mx-24 shadow-xl mt-12">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                    Ready to Ship with CLE FREIGHT LLC?
+                </h2>
+                <p className="text-lg mb-8">
+                    Get your freight quote quickly and start moving your goods safely and efficiently.
+                </p>
+                <Link
+                    to="/quote"
+                    className="inline-block bg-white text-[#4372ac] font-bold px-10 py-4 rounded-xl text-lg hover:scale-105 hover:shadow-lg transition"
+                >
+                    Get My Quote
+                </Link>
+            </section>
 
 
         </div>
