@@ -4,7 +4,15 @@ const EmailSender = async ({ to, subject, htmlContent, recipientName, type }) =>
             throw new Error("Missing required email parameters");
         }
 
-        const response = await fetch('http://localhost:5000/api/send-email', {
+        // ✅ SMART URL: Works on both localhost AND production
+        const API_URL = process.env.NODE_ENV === 'development'
+            ? 'http://localhost:5000/api/send-email'  // Local development
+            : '/api/send-email';                       // Production (Vercel)
+
+        console.log('Sending to:', API_URL);
+        console.log('Environment:', process.env.NODE_ENV);
+
+        const response = await fetch(API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -24,11 +32,15 @@ const EmailSender = async ({ to, subject, htmlContent, recipientName, type }) =>
             throw new Error(data.error || 'Failed to send email');
         }
 
-        console.log('Email sent successfully:', data);
+        console.log('✅ Email sent successfully:', data);
         return { success: true, data };
+
     } catch (error) {
-        console.error('Failed to send email:', error);
-        throw new Error(`Email sending failed: ${error.message}`);
+        console.error('❌ Failed to send email:', error);
+        return {
+            success: false,
+            error: error.message
+        };
     }
 };
 

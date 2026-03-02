@@ -464,5 +464,11 @@ app.post('/api/send-email', async (req, res) => {
   }
 });
 
-const PORT = 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// REPLACE them with:
+export default app;
+
+// Keep this for local development
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = 5000;
+  app.listen(PORT, () => console.log(`Local server running on port ${PORT}`));
+}
