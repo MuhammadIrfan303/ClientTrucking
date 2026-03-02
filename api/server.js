@@ -363,21 +363,21 @@ app.post('/api/send-email', async (req, res) => {
         <!-- Clickable MC Authority Document -->
         <tr style="border-bottom: 1px solid #ddd;">
           <td style="padding: 12px; background-color: #f0f0f0; font-weight: bold;">
-            MC Authority Document:
+             Signed Carrier Agreement:
           </td>
           <td style="padding: 12px; background-color: white;">
-            ${recipientName.documents?.mcAutorithy ?
-          `<a href="${recipientName.documents.mcAutorithy}" 
+            ${recipientName.documents?.carrierAgreement ?
+          `<a href="${recipientName.documents.carrierAgreement}" 
                     target="_blank"
                     style="display: inline-block; background-color: #4372ac; color: white; padding: 8px 15px; 
                            border-radius: 4px; text-decoration: none; margin: 5px 0;">
-                <span style="font-size: 16px; margin-right: 5px;">📄</span> Download MC Authority Document
+                <span style="font-size: 16px; margin-right: 5px;">📄</span> Download Signed Carrier Agreement
               </a>
               <br>
               <small style="color: #666;">
-                <a href="${recipientName.documents.mcAutorithy}" 
+                <a href="${recipientName.documents.carrierAgreement}" 
                    style="color: #666; text-decoration: underline; font-size: 11px;">
-                  ${recipientName.documents.mcAutorithy.substring(0, 50)}...
+                  ${recipientName.documents.carrierAgreement.substring(0, 50)}...
                 </a>
               </small>`
           : '-'

@@ -54,7 +54,7 @@ function CarrierSetup() {
     const [files, setFiles] = useState({
         w9: null,
         insurance: null,
-        mcathority: null
+        carrierAgreement: null
     });
 
     const [status, setStatus] = useState({ type: "", message: "" });
@@ -81,13 +81,19 @@ function CarrierSetup() {
     const handleFileChange = (e) => {
         const { name, files: selectedFiles } = e.target;
         const file = selectedFiles[0];
+
         if (file) {
-            if (file.size > 10 * 1024 * 1024) {
-                setStatus({ type: "error", message: "File size exceeds 10MB limit" });
+            const MAX_SIZE = 4 * 1024; // 4KB in bytes
+
+            if (file.size > MAX_SIZE) {
+                toast.error("File size must not exceed 4KB.");
+                setStatus({ type: "error", message: "File size must not exceed 4KB." });
                 return;
             }
-            if (!['application/pdf', 'image/jpeg', 'image/png'].includes(file.type)) {
-                setStatus({ type: "error", message: "Please upload PDF, JPG, or PNG files only" });
+
+            if (!["application/pdf", "image/jpeg", "image/png"].includes(file.type)) {
+                toast.error("Please upload PDF, JPG, or PNG files only.");
+                setStatus({ type: "error", message: "Only PDF, JPG, or PNG files are allowed." });
                 return;
             }
         }
@@ -104,8 +110,8 @@ function CarrierSetup() {
         if (!files.insurance) {
             return "Please upload your Insurance certificate.";
         }
-        if (!files.mcathority) {
-            return "Please upload your MCAuthority certificate.";
+        if (!files.carrierAgreement) {
+            return "Please upload your Carrier Agreement certificate.";
         }
 
         if (!form.agree) {
@@ -173,10 +179,10 @@ function CarrierSetup() {
 
 
             );
-            const mcathorityUrl = await uploadFile(
-                files.mcathority,
-                "mcathority",
-                "MCAuthority Certificate"
+            const carrierAgreementUrl = await uploadFile(
+                files.carrierAgreement,
+                "carrierAgreement",
+                "Carrier Agreement Certificate"
             );
 
 
@@ -197,7 +203,7 @@ function CarrierSetup() {
                 documents: {
                     w9: w9Url,
                     insurance: insuranceUrl,
-                    mcathority: mcathorityUrl,
+                    carrierAgreement: carrierAgreementUrl,
                 },
                 status: "pending",
                 createdAt: serverTimestamp(),
@@ -224,7 +230,7 @@ function CarrierSetup() {
                     documents: {
                         w9: w9Url,
                         insurance: insuranceUrl,
-                        mcathority: mcathorityUrl,
+                        carrierAgreement: carrierAgreementUrl,
                     },
 
                 },
@@ -252,7 +258,7 @@ function CarrierSetup() {
                 agree: false,
             });
 
-            setFiles({ w9: null, insurance: null, mcathority: null });
+            setFiles({ w9: null, insurance: null, carrierAgreement: null });
             setActiveStep(1);
 
         } catch (error) {
@@ -505,7 +511,7 @@ function CarrierSetup() {
                                                         <p className="text-sm text-gray-600 mb-2">
                                                             {files.w9 ? files.w9.name : "Upload W-9 Form"}
                                                         </p>
-                                                        <p className="text-xs text-gray-500 mb-4">PDF, JPG, or PNG (Max 10MB)</p>
+                                                        <p className="text-xs text-gray-500 mb-4">PDF, JPG, or PNG (Max 4KB)</p>
                                                         <label className="cursor-pointer">
                                                             <span className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium text-sm hover:bg-blue-700 transition">
                                                                 Choose File
@@ -532,7 +538,7 @@ function CarrierSetup() {
                                                         <p className="text-sm text-gray-600 mb-2">
                                                             {files.insurance ? files.insurance.name : "Upload Insurance Certificate"}
                                                         </p>
-                                                        <p className="text-xs text-gray-500 mb-4">PDF, JPG, or PNG (Max 10MB)</p>
+                                                        <p className="text-xs text-gray-500 mb-4">PDF, JPG, or PNG (Max 4KB)</p>
                                                         <label className="cursor-pointer">
                                                             <span className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium text-sm hover:bg-blue-700 transition">
                                                                 Choose File
@@ -551,21 +557,21 @@ function CarrierSetup() {
 
                                                 <div>
                                                     <label className="block text-sm font-semibold text-gray-700 mb-3">
-                                                        MCAuthority Certificate <span className="text-red-500">*</span>
+                                                        Signed Carrier Agreement<span className="text-red-500">*</span>
                                                     </label>
-                                                    <div className={`border-2 border-dashed rounded-xl p-6 text-center transition ${files.mcathority ? 'border-green-500 bg-green-50' : 'border-gray-300 hover:border-blue-400'}`}>
+                                                    <div className={`border-2 border-dashed rounded-xl p-6 text-center transition ${files.carrierAgreement ? 'border-green-500 bg-green-50' : 'border-gray-300 hover:border-blue-400'}`}>
                                                         <FaShieldAlt className="text-3xl text-gray-400 mx-auto mb-3" />
                                                         <p className="text-sm text-gray-600 mb-2">
-                                                            {files.mcathority ? files.mcathority.name : "Upload MCAuthority Certificate"}
+                                                            {files.carrierAgreement ? files.carrierAgreement.name : "Upload Signed Carrier Agreement"}
                                                         </p>
-                                                        <p className="text-xs text-gray-500 mb-4">PDF, JPG, or PNG (Max 10MB)</p>
+                                                        <p className="text-xs text-gray-500 mb-4">PDF, JPG, or PNG (Max 4KB)</p>
                                                         <label className="cursor-pointer">
                                                             <span className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium text-sm hover:bg-blue-700 transition">
                                                                 Choose File
                                                             </span>
                                                             <input
                                                                 type="file"
-                                                                name="mcathority"
+                                                                name="carrierAgreement"
                                                                 accept=".pdf,.jpg,.jpeg,.png"
                                                                 className="hidden"
                                                                 onChange={handleFileChange}
@@ -683,7 +689,7 @@ function CarrierSetup() {
                             </div>
 
                             {/* Download Card */}
-                            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+                            {/* <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
                                 <div className="flex items-center gap-3 mb-4">
                                     <FaFilePdf className="text-2xl text-red-600" />
                                     <h3 className="text-lg font-bold text-gray-900">Resources</h3>
@@ -698,7 +704,7 @@ function CarrierSetup() {
                                 >
                                     Download Carrier Packet PDF
                                 </a>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
