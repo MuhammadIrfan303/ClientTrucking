@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaTruck, FaUserTie, FaCheckCircle } from 'react-icons/fa';
 
 const Contact = () => {
      
 
-     
+     useEffect(() => {
+  window.scrollTo(0, 0);
+}, []);
 
     return (
         <div className="min-h-screen">

@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import WhyChoose from "../components/layoutsections/Whychoose";
+import { useEffect } from "react";
 
 function About() {
 
-
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <div className="min-h-screen bg-white">
 

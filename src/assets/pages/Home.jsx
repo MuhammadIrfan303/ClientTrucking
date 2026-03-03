@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Services from "../components/layoutsections/Services";
 import Testimonal from "../components/layoutsections/Testimonal";
 import WhyChoose from "../components/layoutsections/Whychoose";
+import { useEffect } from "react";
 
 const Home = () => {
 
@@ -9,7 +10,9 @@ const Home = () => {
         alert("We’re currently working on this button functionality to improve your experience. Please check back soon")
     }
 
-
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
 
 

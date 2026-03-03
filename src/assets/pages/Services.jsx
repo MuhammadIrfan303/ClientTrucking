@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import ServicesSection from "../components/layoutsections/Services";
+import { useEffect } from "react";
 
 const Services = () => {
     const coreServices = [
@@ -90,6 +91,9 @@ const Services = () => {
             description: "Precision scheduling and coordination services ensuring timely pickup and delivery with proactive communication."
         }
     ];
+    useEffect(() => {
+  window.scrollTo(0, 0);
+}, []);
 
     return (
         <div className="min-h-screen bg-white">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
     FaTruck,
     FaFilePdf,
@@ -60,8 +60,24 @@ function CarrierSetup() {
     const [status, setStatus] = useState({ type: "", message: "" });
     const [submitting, setSubmitting] = useState(false);
     const [activeStep, setActiveStep] = useState(1);
+    // Create a ref for the form section
+    const formSectionRef = useRef(null);
+    useEffect(() => {
+        window.scrollTo(0, 0);
 
+        // Add a small delay to ensure the page is fully loaded
+        // then scroll to the form section
+        const timer = setTimeout(() => {
+            if (formSectionRef.current) {
+                formSectionRef.current.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }, 300); // 500ms delay to allow page to render
 
+        return () => clearTimeout(timer);
+    }, []);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -330,7 +346,7 @@ function CarrierSetup() {
             </section>
 
             {/* Main Content */}
-            <section className="py-16 px-6 md:px-12">
+            <section className="py-16 px-6 md:px-12" ref={formSectionRef}>
                 <div className="max-w-7xl mx-auto">
                     <div className="grid lg:grid-cols-3 gap-8">
 

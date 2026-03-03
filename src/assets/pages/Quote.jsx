@@ -1,10 +1,9 @@
-import { useState } from 'react';
+ import { useEffect, useState, useRef } from 'react';
 import { FaTruck, FaMapMarkerAlt, FaCalendarAlt, FaPhone, FaEnvelope, FaWeightHanging, FaBox, FaCheckCircle } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify'
 import { db } from '../../firebase'
 import { addDoc, collection, Timestamp } from 'firebase/firestore';
 import EmailSender from '../components/EmailSender';
-
 
 const Quote = () => {
     const initialForm = {
@@ -28,12 +27,46 @@ const Quote = () => {
     const [recentEmail, setRecentEmail] = useState('');
     const [loading, setLoading] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    
+    // Create refs for the form section and success message section
+    const formSectionRef = useRef(null);
+    const successMessageRef = useRef(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setForm((prev) => ({ ...prev, [name]: value }));
     };
-
+    
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        
+        // Add a small delay to ensure the page is fully loaded
+        // then scroll to the form section
+        const timer = setTimeout(() => {
+            if (formSectionRef.current) {
+                formSectionRef.current.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }
+        }, 500); // 500ms delay to allow page to render
+        
+        return () => clearTimeout(timer);
+    }, []);
+    
+    // Effect to scroll to success message when submitted becomes true
+    useEffect(() => {
+        if (submitted && successMessageRef.current) {
+            // Small delay to ensure the success message is rendered
+            setTimeout(() => {
+                successMessageRef.current.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+            }, 100);
+        }
+    }, [submitted]);
+    
     // REPLACE: mailto submission with Firestore write
     // UPDATED: use Firebase Callable Cloud Function instead of direct Firestore write
     const handleSubmit = async (e) => {
@@ -41,6 +74,9 @@ const Quote = () => {
 
         try {
             setLoading(true);
+
+            // Save the email for display in success message
+            setRecentEmail(form.email);
 
             // 1. Save to Firestore
             await addDoc(collection(db, "quotes"), {
@@ -131,21 +167,31 @@ const Quote = () => {
                             <div className="text-sm text-gray-200">Quote Response</div>
                         </div>
                     </div>
+                    
+                    {/* Add a subtle scroll indicator */}
+                    <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
+                        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+                            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            {/* Quote Form Section */}
-            <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 -mt-10 relative z-20">
+            {/* Quote Form Section - Added ref here */}
+            <section 
+                ref={formSectionRef}
+                className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 -mt-10 relative z-20"
+            >
                 <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
                     {submitted ? (
-                        <div className="p-12 text-center">
+                        // Success Message Section - Added ref here
+                        <div ref={successMessageRef} className="p-12 text-center">
                             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                                 </svg>
                             </div>
                             <h2 className="text-3xl font-bold text-gray-900 mb-4">Quote Request Sent!</h2>
-                            {/* UPDATED: Success message to reflect Firebase submission */}
                             <p className="text-gray-600 mb-6">
                                 Thank you for your request. We have received your details and will email your quote to
                                 {' '}
@@ -158,7 +204,18 @@ const Quote = () => {
                                 {' '}or call us directly.
                             </p>
                             <button
-                                onClick={() => setSubmitted(false)}
+                                onClick={() => {
+                                    setSubmitted(false);
+                                    // Scroll back to form when clicking "Submit Another Quote Request"
+                                    setTimeout(() => {
+                                        if (formSectionRef.current) {
+                                            formSectionRef.current.scrollIntoView({ 
+                                                behavior: 'smooth', 
+                                                block: 'start' 
+                                            });
+                                        }
+                                    }, 100);
+                                }}
                                 className="bg-[#133866] hover:bg-[#0d2b4d] text-white font-semibold py-3 px-8 rounded-lg transition duration-300 cursor-pointer"
                             >
                                 Submit Another Quote Request
