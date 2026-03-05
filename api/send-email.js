@@ -1,40 +1,33 @@
 
-
-import nodemailer from 'nodemailer';
-import dotenv from 'dotenv';
-dotenv.config();
-
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.NEXT_AUTHUSER,
-    pass: process.env.NEXT_AUTHPASS,
-  }
-});
+// api/send-email.js
+const nodemailer = require('nodemailer');
 
 export default async function handler(req, res) {
-  if (req.method === 'OPTIONS') {
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', 'https://www.clefreight.us');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    res.setHeader('Access-Control-Allow-Origin', '*'); // or add both domains
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  // Handle preflight
+  if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
-
-
-  if (req.method === 'GET') {
-    return res.json({ message: 'Email API is working' });
-  }
-
-
-
 
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.NEXT_AUTHUSER,
+        pass: process.env.NEXT_AUTHPASS,
+      }
+    });
+
     const { to, subject, htmlContent, recipientName, type } = req.body;
+
     let dynamicContent = "";
 
     if (type === "quote") {
@@ -455,7 +448,7 @@ export default async function handler(req, res) {
     };
 
     const info = await transporter.sendMail(mailOptions);
-    res.json({ success: true, data: info });
+    res.status(200).json({ success: true, data: info });
   } catch (error) {
     console.error('Email error:', error);
     res.status(500).json({ error: error.message });

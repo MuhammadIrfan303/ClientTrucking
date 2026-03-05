@@ -11,7 +11,7 @@ const EmailSender = async ({ to, subject, htmlContent, recipientName, type }) =>
 
         // 2️⃣ Determine API URL
         const API_URL = process.env.NODE_ENV === "development"
-            ? "http://localhost:5000/api/send-email"
+            ? "http://localhost:5000"
             : "https://clefreight.us/api/send-email";// Production Vercel backend
 
         console.log("Sending email to:", API_URL);
