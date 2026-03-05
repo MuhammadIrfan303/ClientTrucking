@@ -20,6 +20,19 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+// CORS headers for the backend
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://www.clefreight.us');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  // Handle preflight request
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  next();
+});
 
 
 app.post('/api/send-email', async (req, res) => {
