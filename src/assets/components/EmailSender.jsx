@@ -8,7 +8,7 @@ const EmailSender = async ({ to, subject, htmlContent, recipientName, type }) =>
         const API_URL =
             process.env.NODE_ENV === "development"
                 ? "http://localhost:5000/api/send-email" // Local
-                : "https://clienttrucking.onrender.com/api/send-email"; // Production (Render)
+                : "/api/send-email"; // Production (Render)
 
         console.log("Sending email to:", API_URL);
         console.log("Environment:", process.env.NODE_ENV);
