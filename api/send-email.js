@@ -1,21 +1,9 @@
-// import express from 'express';
-// import cors from 'cors';
- 
+
+
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 dotenv.config();
 
-
-   // Add this line
-
- 
-
-
-// const app = express();
-// app.use(cors());
-// app.use(express.json());
-
-// Email configuration
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -24,31 +12,30 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-// CORS headers for the backend
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://www.clefreight.us');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  // Handle preflight request
+export default async function handler(req, res) {
   if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Origin', 'https://www.clefreight.us');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     return res.status(200).end();
   }
 
-  next();
-});
+
+  if (req.method === 'GET') {
+    return res.json({ message: 'Email API is working' });
+  }
 
 
-app.post('/api/send-email', async (req, res) => {
+
+
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
   try {
-    console.log("BODY RECEIVED:", req.body);
     const { to, subject, htmlContent, recipientName, type } = req.body;
-
     let dynamicContent = "";
 
-    // ===============================
-    // QUOTE EMAIL TEMPLATE
-    // ===============================
     if (type === "quote") {
       dynamicContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1);"> 
@@ -233,12 +220,7 @@ app.post('/api/send-email', async (req, res) => {
       </div>
     </div>
   `;
-    }
-
-    // ===============================
-    // CARRIER EMAIL TEMPLATE
-    // ===============================
-    else if (type === "carrier") {
+    } else if (type === "carrier") {
       dynamicContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <h3 style="margin-top:0; color: #133866; border-bottom: 2px solid #4372ac; padding-bottom: 10px;">
@@ -433,7 +415,6 @@ app.post('/api/send-email', async (req, res) => {
   `;
     }
 
-
     const mailOptions = {
       from: `"CLE FREIGHT LLC" <clefreight@outlook.com>`,
       to,
@@ -474,18 +455,8 @@ app.post('/api/send-email', async (req, res) => {
 
     const info = await transporter.sendMail(mailOptions);
     res.json({ success: true, data: info });
-
   } catch (error) {
     console.error('Email error:', error);
     res.status(500).json({ error: error.message });
   }
-});
-
-// REPLACE them with:
-export default app;
-
-// Keep this for local development
-if (process.env.NODE_ENV !== 'production') {
-  const PORT = 5000;
-  app.listen(PORT, () => console.log(`Local server running on port ${PORT}`));
 }
