@@ -1,20 +1,19 @@
- # Use this simpler configuration
-@"{"version": 2,
-"builds": [
-    {
-        "src": "api/server.js",
-        "use": "@vercel/node"
-    }
-],
-"routes": [
-    {
-        "src": "/api/(.*)",
-        "dest": "/api/server.js"
-    },
-    {
-        "src": "/(.*)",
-        "dest": "/index.html"
-    }
-]
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "api/server.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "/api/server.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/index.html"
+        }
+    ]
 }
-"@ | Out-File -FilePath vercel.json -Encoding UTF8
