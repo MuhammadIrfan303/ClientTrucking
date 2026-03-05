@@ -1,15 +1,19 @@
-import express from 'express';
-import cors from 'cors';
+// import express from 'express';
+// import cors from 'cors';
+ 
 import nodemailer from 'nodemailer';
-
-import dotenv from 'dotenv';  // Add this line
-
+import dotenv from 'dotenv';
 dotenv.config();
 
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+   // Add this line
+
+ 
+
+
+// const app = express();
+// app.use(cors());
+// app.use(express.json());
 
 // Email configuration
 const transporter = nodemailer.createTransport({
