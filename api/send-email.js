@@ -14,7 +14,8 @@ const transporter = nodemailer.createTransport({
 
 export default async function handler(req, res) {
   if (req.method === 'OPTIONS') {
-    res.setHeader('Access-Control-Allow-Origin', 'https://www.clefreight.us');
+
+    res.setHeader('Access-Control-Allow-Origin', '*'); // or add both domains
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     return res.status(200).end();
