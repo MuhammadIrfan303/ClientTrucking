@@ -20,7 +20,9 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-
+app.get("/", (req, res) => {
+  res.send("API Running Successfully 🚀");
+});
 
 app.post('/api/send-email', async (req, res) => {
   try {
@@ -468,7 +470,8 @@ app.post('/api/send-email', async (req, res) => {
 export default app;
 
 // Keep this for local development
-if (process.env.NODE_ENV !== 'production') {
-  const PORT = 5000;
-  app.listen(PORT, () => console.log(`Local server running on port ${PORT}`));
-}
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

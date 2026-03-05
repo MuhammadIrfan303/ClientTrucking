@@ -1,11 +1,12 @@
- const EmailSender = async ({ to, subject, htmlContent, recipientName, type }) => {
+const EmailSender = async ({ to, subject, htmlContent, recipientName, type }) => {
     try {
         if (!to || !subject || !htmlContent) {
             throw new Error("Missing required email parameters");
         }
 
         // ✅ API URL configuration
-        const API_URL = process.env.NODE_ENV === "development"
+        const API_URL =
+            process.env.NODE_ENV === "development"
                 ? "http://localhost:5000/api/send-email" // Local
                 : "https://clienttrucking.onrender.com/api/send-email"; // Production (Render)
 
