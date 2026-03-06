@@ -1,4 +1,4 @@
- import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { FaTruck, FaMapMarkerAlt, FaCalendarAlt, FaPhone, FaEnvelope, FaWeightHanging, FaBox, FaCheckCircle } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify'
 import { db } from '../../firebase'
@@ -27,7 +27,7 @@ const Quote = () => {
     const [recentEmail, setRecentEmail] = useState('');
     const [loading, setLoading] = useState(false);
     const [submitted, setSubmitted] = useState(false);
-    
+
     // Create refs for the form section and success message section
     const formSectionRef = useRef(null);
     const successMessageRef = useRef(null);
@@ -36,37 +36,37 @@ const Quote = () => {
         const { name, value } = e.target;
         setForm((prev) => ({ ...prev, [name]: value }));
     };
-    
+
     useEffect(() => {
         window.scrollTo(0, 0);
-        
+
         // Add a small delay to ensure the page is fully loaded
         // then scroll to the form section
         const timer = setTimeout(() => {
             if (formSectionRef.current) {
-                formSectionRef.current.scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'start' 
+                formSectionRef.current.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
                 });
             }
         }, 500); // 500ms delay to allow page to render
-        
+
         return () => clearTimeout(timer);
     }, []);
-    
+
     // Effect to scroll to success message when submitted becomes true
     useEffect(() => {
         if (submitted && successMessageRef.current) {
             // Small delay to ensure the success message is rendered
             setTimeout(() => {
-                successMessageRef.current.scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'center' 
+                successMessageRef.current.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
                 });
             }, 100);
         }
     }, [submitted]);
-    
+
     // REPLACE: mailto submission with Firestore write
     // UPDATED: use Firebase Callable Cloud Function instead of direct Firestore write
     const handleSubmit = async (e) => {
@@ -167,7 +167,7 @@ const Quote = () => {
                             <div className="text-sm text-gray-200">Quote Response</div>
                         </div>
                     </div>
-                    
+
                     {/* Add a subtle scroll indicator */}
                     <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
                         <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
@@ -178,7 +178,7 @@ const Quote = () => {
             </section>
 
             {/* Quote Form Section - Added ref here */}
-            <section 
+            <section
                 ref={formSectionRef}
                 className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 -mt-10 relative z-20"
             >
@@ -209,9 +209,9 @@ const Quote = () => {
                                     // Scroll back to form when clicking "Submit Another Quote Request"
                                     setTimeout(() => {
                                         if (formSectionRef.current) {
-                                            formSectionRef.current.scrollIntoView({ 
-                                                behavior: 'smooth', 
-                                                block: 'start' 
+                                            formSectionRef.current.scrollIntoView({
+                                                behavior: 'smooth',
+                                                block: 'start'
                                             });
                                         }
                                     }, 100);
