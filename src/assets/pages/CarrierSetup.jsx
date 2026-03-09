@@ -427,7 +427,7 @@ function CarrierSetup() {
                                                         Contact Name <span className="text-red-500">*</span>
                                                     </label>
                                                     <input
-                                                        type="tel"
+                                                        type="text"
                                                         name="contactName"
                                                         value={form.contactName}
                                                         onChange={handleChange}
