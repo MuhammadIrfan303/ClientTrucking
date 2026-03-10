@@ -99,11 +99,12 @@ function CarrierSetup() {
         const file = selectedFiles[0];
 
         if (file) {
-            const MAX_SIZE = 4 * 1024; // 4KB in bytes
+            // ✅ FIXED: 5MB in bytes (4 * 1024 * 1024)
+            const MAX_SIZE = 4 * 1024 * 1024; // 4MB in bytes
 
             if (file.size > MAX_SIZE) {
-                toast.error("File size must not exceed 4KB.");
-                setStatus({ type: "error", message: "File size must not exceed 4KB." });
+                toast.error("File size must not exceed 5MB.");
+                setStatus({ type: "error", message: "File size must not exceed 5MB." });
                 return;
             }
 
