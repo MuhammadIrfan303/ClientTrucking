@@ -26,7 +26,7 @@ import { uploadBytesResumable } from "firebase/storage";
 import { toast, ToastContainer } from "react-toastify";
 import EmailSender from "../components/EmailSender";
 function CarrierSetup() {
-    const CONTACT_EMAIL = "clefreight@outlook.com";
+    const CONTACT_EMAIL = "CLEfreight.agent@gmail.com";
     const CONTACT_PHONE = "18624173188";
 
     const [uploading, setUploading] = useState(false);

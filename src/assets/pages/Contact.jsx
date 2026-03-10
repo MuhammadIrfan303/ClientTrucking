@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaTruck, FaUserTie, FaCheckCircle } from 'react-icons/fa';
 
 const Contact = () => {
-     
 
-     useEffect(() => {
-  window.scrollTo(0, 0);
-}, []);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <div className="min-h-screen">
@@ -29,14 +29,14 @@ const Contact = () => {
                         Reach out to our logistics experts for reliable, efficient, and cost-effective transportation solutions. Fill out the form below or use our contact information to connect directly.
                     </p>
                     <div className="flex flex-wrap gap-4 mt-6">
-                       
+
                         {/* Updated: phone link uses tel:+18624173188 and shows the correct number */}
                         <a href="tel:+18624173188" className="border-2 border-white hover:bg-white hover:text-gray-900 text-white px-8 py-3 rounded-xl font-semibold text-lg transition duration-300 flex items-center gap-2">
                             <FaPhone /> +1 (862) 417-3188
                         </a>
                         {/* New: email link opens the user's email app */}
-                        <a href="mailto:clefreight@outlook.com" className="border-2 border-white hover:bg-white hover:text-gray-900 text-white px-8 py-3 rounded-xl font-semibold text-lg transition duration-300 flex items-center gap-2">
-                            <FaEnvelope /> clefreight@outlook.com
+                        <a href="mailto:CLEfreight.agent@gmail.com" className="border-2 border-white hover:bg-white hover:text-gray-900 text-white px-8 py-3 rounded-xl font-semibold text-lg transition duration-300 flex items-center gap-2">
+                            <FaEnvelope /> CLEfreight.agent@gmail.com
                         </a>
                     </div>
                 </div>
@@ -59,8 +59,8 @@ const Contact = () => {
                         <FaEnvelope className="text-[#4372ac] text-2xl mt-1" />
                         <div>
                             <h3 className="font-semibold text-gray-900">Email</h3>
-                            <a href="mailto:clefreight@outlook.com" className="text-[#133866] hover:underline">
-                                clefreight@outlook.com
+                            <a href="mailto:CLEfreight.agent@gmail.com" className="text-[#133866] hover:underline">
+                                CLEfreight.agent@gmail.com
                             </a>
                         </div>
                     </div>
@@ -129,7 +129,7 @@ const Contact = () => {
                     </div>
                 </div>
             </section>
- 
+
         </div>
     );
 };

@@ -200,7 +200,7 @@ const Quote = () => {
                             <p className="text-gray-600 mb-8">
                                 For immediate assistance, email us at
                                 {' '}
-                                <a href="mailto:clefreight@outlook.com" className="text-[#4372ac] hover:text-[#133866] font-semibold">clefreight@outlook.com</a>
+                                <a href="mailto:clefreight@outlook.com" className="text-[#4372ac] hover:text-[#133866] font-semibold">CLEfreight.agent@gmail.com</a>
                                 {' '}or call us directly.
                             </p>
                             <button
@@ -541,9 +541,9 @@ const Quote = () => {
                                             <FaPhone className="mr-3" />
                                             <span className="font-semibold">+1 (862) 417-3188</span>
                                         </a>
-                                        <a href="mailto:clefreight@outlook.com" className="flex items-center text-[#a3c4f3] hover:text-white">
+                                        <a href="mailto:CLEfreight.agent@gmail.com" className="flex items-center text-[#a3c4f3] hover:text-white">
                                             <FaEnvelope className="mr-3" />
-                                            <span className="font-semibold">clefreight@outlook.com</span>
+                                            <span className="font-semibold">CLEfreight.agent@gmail.com</span>
                                         </a>
                                     </div>
                                     <p className="text-gray-400 text-sm mt-4">
